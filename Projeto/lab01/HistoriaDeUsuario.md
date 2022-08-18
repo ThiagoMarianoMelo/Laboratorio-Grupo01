@@ -1,4 +1,5 @@
 # Histórias de usuário
+
 ## História de usuário 01 - realizar login
 
 Eu como usuário quero fazer login para entrar na plataforma
@@ -7,34 +8,37 @@ Eu como usuário quero fazer login para entrar na plataforma
 
 Eu como professor quero conferir a matrícula dos alunos na minha disciplina para saber informações dos matriculados.
 
-## História de usuário 03 - cancelar disciplina
+## História de usuário 03 - Criar alunos
 
-Eu como secretário desejo cancelar uma disciplina para que ela fique inativa para o próximo semestre.
+Eu como secretário quero criar um aluno para que ele possa interagir com o sistema.
 
-## História de usuário 04 - Manter informações sobre os alunos
-
-Eu como secretário quero manter informações sobre os alunos para que elas possam ser consultadas posteriormente.
-
-## História de usuário 05 - Manter informações sobre as disciplinas
-
-Eu como secretário quero manter informações sobre as disciplinas para que elas possam ser consultadas posteriormente. 
-
-## História de usuário 06 - Manter informações sobre os professores
-
-Eu como secretário quero manter informações sobre os professores para que elas possam ser consultadas posteriormente.
-
-## História de usuário 07 - Gerar currículo para semestre
+## História de usuário 04 - Gerar currículo para semestre
 
 Eu como secretário quero gerar currículo para o semestre, para que os alunos possam consultar as matérias disponíveis para seu curso e período.
 
-## História de usuário 08 - Cancelar matrícula
 
-Eu como aluno desejo cancelar minha matrícula para sair do curso.
+## História de usuário 05 - Editar alunos
 
-## História de usuário 09 - Receber cobrança pelas disciplinas matriculadas
+Eu como secretário quero editar um aluno para que suas informações possam ser as mais atualizadas possíveis
 
-Eu como aluno desejo receber cobrança pelas disciplinas matriculadas para realizar o pagamento delas.
 
-## História de usuário 10 - Matricular
+## História de usuário 06 - Deletar alunos
+
+Eu como secretário quero deletar um aluno para que ele não possa mais interagir com o sistema.
+
+
+## História de usuário 07 - Obter alunos
+
+Eu como secretário quero obter um aluno para consultar suas informações
+
+## História de usuário 08 - Matricular
 
 Eu como aluno desejo me matricular em uma disciplina para cursá-la.
+
+## História de usuário 09 - Manter informações sobre as disciplinas
+
+Eu como secretário quero manter informações sobre as disciplinas para que elas possam ser consultadas posteriormente. 
+
+## História de usuário 10 - Manter informações sobre os professores
+
+Eu como secretário quero manter informações sobre os professores para que elas possam ser consultadas posteriormente.
