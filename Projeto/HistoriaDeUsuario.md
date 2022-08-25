@@ -32,18 +32,18 @@ Eu como secretário quero obter um aluno para consultar suas informações
 
 Eu como aluno desejo me matricular em uma disciplina para cursá-la.
 
-## História de usuário 08 - Matricular matéria obrigatória
+## História de usuário 09 - Matricular matéria obrigatória
 
 Eu como aluno desejo me matricular em uma disciplina obrigatória para cursá-la.
 
-## História de usuário 08 - Matricular matéria optativa
+## História de usuário 10 - Matricular matéria optativa
 
 Eu como aluno desejo me matricular em uma disciplina optativa para cursá-la.
 
-## História de usuário 08 - Cancelar matrícula
+## História de usuário 11 - Cancelar matrícula
 
 Eu como aluno desejo cancelar minha matrícula em uma disciplina para deixar de cursá-la.
 
-## História de usuário 08 - Cobrar matrícula
+## História de usuário 12 - Cobrar matrícula
 
 Eu como secretário do setor financeiro desejo cobrar um aluno pelas devidas matérias matriculadas para que ele possa efetivar sua matrícula.
