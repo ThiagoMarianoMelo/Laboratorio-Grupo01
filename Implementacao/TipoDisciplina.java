@@ -4,8 +4,13 @@ public enum TipoDisciplina {
     OPCIONAL(2);
 
     int quantidadeDeMateriasPossiveis;
+
     TipoDisciplina(int quantidadeDeMateriasPossiveis){
         this.quantidadeDeMateriasPossiveis = quantidadeDeMateriasPossiveis;
+    }
+
+    public int getQuantidadeDeMateriasPossiveis() {
+        return quantidadeDeMateriasPossiveis;
     }
 
 }

@@ -10,12 +10,4 @@ public class Secretaria {
 
     public void gerarCurriculo(Curso curso, LocalDate dataMatriculaDisciplinaInicio,LocalDate dataMatriculaDisciplinaFim){
     }
-
-    public void cadastrarAluno(Curso curso, String senha, String email){}
-
-    public void cadastrarProfessor(Curso curso, String senha, String email){}
-
-    public void cadastrarCurso(String nome, List<Disciplina> disciplinas, int numeroDeCreditos){}
-
-    public void cadastrarDisciplina(String nome, Professor professor, List<Curso> cursos ){}
 }
