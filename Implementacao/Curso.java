@@ -2,9 +2,13 @@ import java.util.List;
 
 public class Curso {
     private String nome;
-    private List<Disciplina> disciplinas;
     private int numeroDeCreditos;
     private Curriculo curriculoDeCurso;
+
+    public Curso(String nome,int numeroDeCreditos){
+        this.nome = nome;
+        this.numeroDeCreditos = numeroDeCreditos;
+    }
 
     public void relatorioCurso(){}
 
@@ -12,7 +16,8 @@ public class Curso {
         return curriculoDeCurso;
     }
 
-    public List<Disciplina> getDisciplinas() {
-        return disciplinas;
+    public void setCurriculoDeCurso(Curriculo curriculoDeCurso) {
+        this.curriculoDeCurso = curriculoDeCurso;
     }
+
 }

@@ -1,16 +1,28 @@
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
 
 public class Disciplina{
     private String nome;
     private TipoDisciplina tipoDisciplina;
     private boolean statusDisciplina;
     private boolean statusMatricula;
-    private HashMap<Aluno,String> alunos;
+    private List<Aluno> alunos;
     private Professor professor;
     private List<Curso> cursos;
     private double preco;
+
+    public Disciplina(String nome,TipoDisciplina tipo, Professor p, double preco ){
+        this.alunos = new ArrayList<>();
+        this.nome = nome;
+        this.tipoDisciplina = tipo;
+        this.professor = p;
+        this.preco = preco;
+        this.statusDisciplina = true;
+        this.statusMatricula = true;
+    }
 
     public boolean finalizarInscricoes(){return true;}
     public boolean cancelarDisciplina(){return true;}
@@ -20,10 +32,14 @@ public class Disciplina{
     }
 
     public void adicionarAluno(Aluno aluno) {
-        this.alunos.put(aluno, aluno.email);
+        this.alunos.add(aluno);
     }
 
-    public HashMap<Aluno, String> getAlunos() {
+    public void adicionarCurso(Curso curso){
+        this.cursos.add(curso);
+    }
+
+    public List<Aluno> getAlunos() {
         return alunos;
     }
 

@@ -1,6 +1,7 @@
 import java.time.LocalDate;
 
 
+
 public class MatriculaDisciplina {
     private Aluno aluno;
     private Disciplina disciplina;
@@ -16,7 +17,7 @@ public class MatriculaDisciplina {
     }
 
     private boolean checarDisciplinaExistenteNoCurso(){
-        boolean temDisciplina = this.aluno.getCurso().getDisciplinas().stream().anyMatch(Disciplina -> {
+        boolean temDisciplina = this.aluno.getCurso().getCurriculoDeCurso().getDisciplinasDoCurso().stream().anyMatch(Disciplina -> {
             return Disciplina.equals(this.disciplina);
         });
             return temDisciplina;
@@ -38,12 +39,18 @@ public class MatriculaDisciplina {
     }
 
     private boolean checarQtdeAlunosDisciplina(){
-        if(this.disciplina.getAlunos().size()<60)
+        if(this.disciplina.getAlunos().size()==0){
             return true;
-        else
-        System.out.println("Matrícula não completada. Motivo:Essa Disciplina alcançou a quantidade máxima de alunos");
+        }
+        else{
+            if(this.disciplina.getAlunos().size()<60)
+                return true;
+            else
+                System.out.println("Matrícula não completada. Motivo:Essa Disciplina alcançou a quantidade máxima de alunos");
             return false;
-    }
+        }
+        }
+
 
     private void efetivarMatriculaDisciplina(){
         if(this.checarPeriodoMatricula()==true && this.checarQtdeAlunosDisciplina()==true && this.checarDisciplinaExistenteNoCurso()==true){
