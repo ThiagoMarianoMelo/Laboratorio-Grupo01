@@ -1,6 +1,6 @@
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
+
 import java.util.List;
 
 
@@ -45,5 +45,20 @@ public class Disciplina{
 
     public TipoDisciplina getTipoDisciplina() {
         return tipoDisciplina;
+    }
+    public List<Curso> getCursos() {
+        return cursos;
+    }
+    public double getPreco() {
+        return preco;
+    }
+    public Professor getProfessor() {
+        return professor;
+    }
+    public boolean isStatusDisciplina() {
+        return statusDisciplina;
+    }
+    public boolean isStatusMatricula() {
+        return statusMatricula;
     }
 }
