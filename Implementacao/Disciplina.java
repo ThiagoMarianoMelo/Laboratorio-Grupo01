@@ -1,6 +1,6 @@
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
+
 import java.util.List;
 
 
@@ -24,8 +24,18 @@ public class Disciplina{
         this.statusMatricula = true;
     }
 
-    public boolean finalizarInscricoes(){return true;}
-    public boolean cancelarDisciplina(){return true;}
+    public boolean finalizarInscricoes(){
+        try{
+            this.setStatusDisciplina(false);
+            return true;
+        }catch(Exception e){
+            return false;
+        }
+    }
+    public boolean cancelarDisciplina(){
+        this.setStatusMatricula(false);
+        return true;
+    }
 
     public String getNome() {
         return nome;
@@ -45,5 +55,26 @@ public class Disciplina{
 
     public TipoDisciplina getTipoDisciplina() {
         return tipoDisciplina;
+    }
+    public List<Curso> getCursos() {
+        return cursos;
+    }
+    public double getPreco() {
+        return preco;
+    }
+    public Professor getProfessor() {
+        return professor;
+    }
+    public boolean isStatusDisciplina() {
+        return statusDisciplina;
+    }
+    public boolean isStatusMatricula() {
+        return statusMatricula;
+    }
+    private void setStatusDisciplina(boolean x){
+        this.statusDisciplina = x;
+    }
+    private void setStatusMatricula(boolean x){
+        this.statusMatricula = x;
     }
 }
