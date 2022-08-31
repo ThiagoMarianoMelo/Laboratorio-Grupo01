@@ -1,4 +1,3 @@
-import java.time.LocalDate;
 import java.util.List;
 
 public class Secretario extends Usuario{
@@ -15,11 +14,8 @@ public class Secretario extends Usuario{
         secretaria.addProfessor(professor);
     }
 
-    public void cadastrarCurso(String nome, List<Disciplina> disciplinas, int numeroDeCreditos){
-        final Curso curso = new Curso(nome, numeroDeCreditos);
-        // TODO: Continuar
+    public void cadastrarDisciplina(String nome, Professor professor, List<Curso> cursos ){
+        // TODO: How?
     }
-
-    public void cadastrarDisciplina(String nome, Professor professor, List<Curso> cursos ){}
 
 }
