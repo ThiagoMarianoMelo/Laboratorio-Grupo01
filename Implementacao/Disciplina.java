@@ -24,8 +24,18 @@ public class Disciplina{
         this.statusMatricula = true;
     }
 
-    public boolean finalizarInscricoes(){return true;}
-    public boolean cancelarDisciplina(){return true;}
+    public boolean finalizarInscricoes(){
+        try{
+            this.setStatusDisciplina(false);
+            return true;
+        }catch(Exception e){
+            return false;
+        }
+    }
+    public boolean cancelarDisciplina(){
+        this.setStatusMatricula(false);
+        return true;
+    }
 
     public String getNome() {
         return nome;
@@ -60,5 +70,11 @@ public class Disciplina{
     }
     public boolean isStatusMatricula() {
         return statusMatricula;
+    }
+    private void setStatusDisciplina(boolean x){
+        this.statusDisciplina = x;
+    }
+    private void setStatusMatricula(boolean x){
+        this.statusMatricula = x;
     }
 }
