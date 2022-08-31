@@ -1,10 +1,21 @@
-
 public class Cobranca {
     private double valorTotal;
     private Aluno aluno;
     private boolean foiPaga;
 
-    public void cobrarFatura(){
-        this.valorTotal = Aluno.getMatriculas().stream().map(e -> e.getDisciplina()).map(e -> e.getPreco()).sum().mapToDouble();
+    public Cobranca(Aluno aluno, double valorTotal){
+        this.valorTotal = valorTotal;
+        this.aluno = aluno;
+    }
+
+    public void cobrarFatura() {
+        this.foiPaga = true;
+        // this.valorTotal = aluno.getMatriculas().stream()
+        //         .map(matricula -> matricula.getDisciplina().getPreco())
+        //         .mapToDouble(Double::doubleValue).sum();
+    }
+
+    public void addValorTotal(double valor){
+        this.valorTotal += valor;
     }
 }

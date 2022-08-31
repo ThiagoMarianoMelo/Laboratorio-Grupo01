@@ -5,12 +5,13 @@ public class Curso {
     private int numeroDeCreditos;
     private Curriculo curriculoDeCurso;
 
-    public Curso(String nome,int numeroDeCreditos){
+    public Curso(String nome, int numeroDeCreditos) {
         this.nome = nome;
         this.numeroDeCreditos = numeroDeCreditos;
     }
 
-    public void relatorioCurso(){}
+    public void relatorioCurso() {
+    }
 
     public Curriculo getCurriculoDeCurso() {
         return curriculoDeCurso;
