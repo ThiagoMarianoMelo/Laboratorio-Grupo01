@@ -15,7 +15,7 @@ import com.grupo1.app.entidades.Cliente;
 import com.grupo1.app.persistencia.clienteRepository;
 
 public class ClienteController {
-    private final clienteRepository clienteRepository;
+    private final clienteRepository<Cliente, String> clienteRepository;
     
     public ClienteController(clienteRepository clienteRepository){
         this.clienteRepository = clienteRepository;
