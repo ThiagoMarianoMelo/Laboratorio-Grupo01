@@ -1,7 +1,7 @@
 import java.time.LocalDate;
 import java.util.List;
 
-public class Secretario extends Usuario{
+public class Secretario extends Usuario {
 
     Secretaria secretaria;
 
