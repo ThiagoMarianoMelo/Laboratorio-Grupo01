@@ -11,7 +11,13 @@ public class Professor extends Usuario {
         this.gerarEmail();
     }
 
-    public void relatorioAlunosDisciplina(Disciplina disciplina, Aluno aluno){}
+    public String relatorioAlunosDisciplina(Disciplina disciplina){
+        final boolean estaLecionandoDisciplina = disciplinasAtuais.stream().anyMatch(d -> d.equals(disciplina));
+        if(estaLecionandoDisciplina){
+            return disciplina.getAlunos().stream().toString();
+        }
+        return null;
+    }
 
     public void addDisciplina(Disciplina d){
         this.disciplinasAtuais.add(d);
