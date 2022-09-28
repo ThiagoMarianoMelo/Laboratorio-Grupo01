@@ -1,0 +1,9 @@
+.basic_button_container {
+	cursor: pointer;
+	font-size: 1.2rem;
+	font-weight: bold;
+	padding: 0.7rem;
+	width: 100%;
+	background-color: #c4c4c4;
+	border-width: 1px;
+}

@@ -1,0 +1,10 @@
+.visibility_input_container {
+	position: relative;
+}
+
+.visibility_icon_positon {
+	position: absolute;
+	cursor: pointer;
+	top: 57%;
+	right: 3%;
+}

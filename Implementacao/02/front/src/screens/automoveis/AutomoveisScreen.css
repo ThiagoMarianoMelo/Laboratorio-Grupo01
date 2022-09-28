@@ -1,0 +1,76 @@
+.admin-list-of-products-main-container {
+	margin-top: 2%;
+	margin-left: 20%;
+	margin-right: 10%;
+}
+
+.admin-list-of-products-add-new-product {
+	color: #0d6efd;
+	cursor: pointer;
+}
+
+.admin-list-of-products-first-row-container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.admin-list-of-products-outline-container {
+	border: 1px solid black;
+	border-radius: 0.3rem;
+}
+
+.admin-list-of-products-header-gradient {
+    background: linear-gradient(
+		129.58deg,
+		rgba(193, 197, 203, 0.29) 30.56%,
+		rgba(193, 197, 203, 0.6) 63.73%
+	);
+	box-shadow: 0px 0.2rem 0.2rem rgba(193, 197, 203, 0.35);
+	backdrop-filter: blur(100px);
+}
+
+.admin-list-of-products-table-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-inline: 1rem;
+	padding-block: 1rem;
+	border-radius: 0.3rem auto;
+}
+
+.admin-list-of-products-founded-products-text {
+	margin: 1rem 2rem;
+}
+
+.admin-list-of-products-table-container {
+	border: 1px solid black;
+	border-radius: 0.3rem;
+	margin: 1rem 2rem;
+}
+
+.admin-list-of-products-table{
+    padding: 1rem;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin-list-of-prooducts-product-row {
+    text-align: center;
+    margin-top: 1rem;
+    border-bottom: 1px solid rgb(179, 176, 176);
+}
+
+.admin-list-of-prooducts-product-row td{
+    padding: 1rem;
+}
+
+.admin-list-of-products-product-trash-icon{
+    color: red;
+    cursor: pointer;
+}
+
+.admin-list-of-products-product-edit-icon{
+	margin-left: 0.3rem;
+	cursor: pointer;
+}

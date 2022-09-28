@@ -1,0 +1,16 @@
+.label-with-icon-container {
+    font-size: 1.1rem;
+    margin-left: 1rem;
+}
+
+.label-with-icon-container + .label-with-icon-container  {
+    margin-top: 1rem;
+}
+
+.label-with-icon-left span{
+    margin-left: 1.5rem;
+}
+
+.label-with-icon-right span{
+    margin-right: 1.5rem;
+}

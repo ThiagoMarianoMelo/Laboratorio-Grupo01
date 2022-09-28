@@ -1,0 +1,56 @@
+.form_main_container {
+	width: 45%;
+	margin: auto;
+	padding: 10px;
+	margin-top: 6%;
+	background: linear-gradient(
+		129.58deg,
+		rgba(193, 197, 203, 0.29) 30.56%,
+		rgba(193, 197, 203, 0.6) 63.73%
+	);
+	box-shadow: 0px 15px 25px rgba(193, 197, 203, 0.35);
+	border-radius: 5px;
+}
+
+.form_description {
+	text-align: center;
+}
+
+.form_description span,
+h1 {
+	margin: 0px;
+	padding: 0px;
+}
+
+.form_description span {
+	font-size: 0.8rem;
+	font-weight: 400;
+	line-height: 150%;
+	color: rgba(0, 0, 0, 0.43);
+}
+
+.form_container {
+	display: flex;
+	flex-direction: column;
+	padding-inline: 2rem;
+}
+
+.form_input_container {
+	margin-top: 1.5rem;
+}
+
+.form_button_container {
+	width: 60%;
+	margin: 2rem auto 0;
+}
+
+.form_custom_message {
+	margin-top: 0.3rem;
+	text-align: center;
+}
+
+.form_custom_message a {
+	color: black;
+	font-weight: bold;
+	text-decoration: none;
+}
