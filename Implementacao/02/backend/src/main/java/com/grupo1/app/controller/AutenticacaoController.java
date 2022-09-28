@@ -38,7 +38,6 @@ public class AutenticacaoController {
         final Usuario usuario = autenticacaoService.getUsuarioByEmailESenha(
                 request.getEmail(), request.getSenha());
         if (usuario != null) {
-            // TODO: retornar JWT e menos infos sobre o usuario
             return new ResponseEntity<>(usuario, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

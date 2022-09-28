@@ -104,7 +104,6 @@ public class ContratoService implements IContratoService {
 
     @Override
     public Contrato editarContrato(EditarContratoRequest request, UUID id) {
-        // TODO: Retornar erro quando pedidoDeEdicaoDeContratoEValido é false
         if (pedidoDeEdicaoDeContratoEValido(request)) {
             final Optional<Contrato> optionalContrato = contratoRepository.findById(id);
             if (optionalContrato.isPresent()) {

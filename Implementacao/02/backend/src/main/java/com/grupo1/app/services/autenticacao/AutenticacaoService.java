@@ -14,8 +14,6 @@ import com.grupo1.app.entidades.bussiness.usuarios.cliente.Empregadora;
 import com.grupo1.app.persistencia.UsuarioRepository;
 import com.grupo1.app.services.empregador.IEmpregadoraService;
 
-// TODO: Para instanciar o usuario com o builder, buscar 
-// maneira mais elegante doq fazer a mesma coisa multiplas vezes
 @Service
 public class AutenticacaoService implements IAutenticacaoService {
     @Autowired

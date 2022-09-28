@@ -15,7 +15,6 @@ public class Secretario extends Usuario{
     }
 
     public void cadastrarDisciplina(String nome, Professor professor, List<Curso> cursos ){
-        // TODO: How?
     }
 
 }

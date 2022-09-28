@@ -50,12 +50,10 @@ public class PedidoService implements IPedidoService {
 
     @Override
     public Pedido atualizarStatus(Pedido pedido, StatusPedido status) {
-        // TODO: Retornar error quando pedidoDeAtualizacaoDeStatusEValido for falso
         if (!pedido.getStatus().equals(status) && pedidoDeAtualizacaoDeStatusEValido(pedido, status)) {
             pedido.setStatus(status);
             final Contrato contrato = criarContrato(pedido);
             if (contrato == null && status.equals(StatusPedido.APROVADO)) {
-                // TODO: Melhorar isso aq........
                 throw new Error("Erro para criar contrato");
             }
             return pedidoRepository.save(pedido);

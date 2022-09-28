@@ -10,8 +10,6 @@ import org.springframework.stereotype.Repository;
 
 import com.grupo1.app.entidades.bussiness.documentos.contrato.Contrato;
 
-// TODO: houve uma tentativa de usar o @Query, rolou não 
-// avaliar depois qual era o problema
 @Repository
 public interface CriarContratoRepository extends CrudRepository<Contrato, UUID>{
 }

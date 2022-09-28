@@ -49,7 +49,6 @@ public class PedidoController {
     @PostMapping
     public ResponseEntity<Pedido> criarPedido(
             @Valid @RequestBody CriarPedidoRequest request) {
-        // TODO: validar se uma data não é maior que a outra
         final Usuario usuario = autenticacaoService.getUserById(request.getUserId());
         final Automovel automovel = automovelService.getAutomovelById(request.getAutomovelId());
         if (usuario != null && automovel != null) {
