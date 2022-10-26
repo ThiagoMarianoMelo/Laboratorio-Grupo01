@@ -43,6 +43,7 @@ public class VantagemController {
     @PostMapping("")
     public ResponseEntity<Vantagem> criarVantagem(
             @Valid @RequestBody CriarVantagemRequest request) {
+
         final Vantagem vantagem = vantagemService.criarVantagem(request);
         return new ResponseEntity<>(vantagem, HttpStatus.OK);
     }
@@ -51,10 +52,13 @@ public class VantagemController {
     public ResponseEntity<Vantagem> editarVantagem(
             @PathVariable UUID id,
             @Valid @RequestBody EditarVantagemRequest request) {
+
         final Vantagem vantagem = vantagemService.editarVantagem(id, request);
+
         if (vantagem != null) {
             return new ResponseEntity<>(vantagem, HttpStatus.OK);
         }
+        
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
@@ -62,9 +66,11 @@ public class VantagemController {
     public ResponseEntity<?> deletarVantagem(
             @PathVariable UUID id) {
         final boolean vantagemDeletada = vantagemService.deletarVantagem(id);
+        
         if (vantagemDeletada) {
             return new ResponseEntity<>(HttpStatus.OK);
         }
+
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
