@@ -35,7 +35,7 @@ public class VantagemController {
     private UsuarioService usuarioService;
 
     @GetMapping("")
-    public ResponseEntity<List<Vantagem>> listartVantagens() {
+    public ResponseEntity<List<Vantagem>> listarVantagens() {
         return new ResponseEntity<>(vantagemService.getVantagens(), HttpStatus.OK);
     }
 
