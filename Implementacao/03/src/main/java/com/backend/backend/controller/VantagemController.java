@@ -40,7 +40,7 @@ public class VantagemController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Vantagem> criariVantagem(
+    public ResponseEntity<Vantagem> criarVantagem(
             @Valid @RequestBody CriarVantagemRequest request) {
         final Vantagem vantagem = vantagemService.criarVantagem(request);
         return new ResponseEntity<>(vantagem, HttpStatus.OK);
