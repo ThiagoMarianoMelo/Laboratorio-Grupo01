@@ -29,6 +29,7 @@ import com.backend.backend.models.services.usuario.UsuarioService;
 @Controller
 @RequestMapping("/vantagem")
 public class VantagemController {
+    
     @Autowired
     private VantagemService vantagemService;
     @Autowired
