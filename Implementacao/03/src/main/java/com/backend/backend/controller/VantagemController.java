@@ -63,8 +63,7 @@ public class VantagemController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deletarVantagem(
-            @PathVariable UUID id) {
+    public ResponseEntity<?> deletarVantagem(@PathVariable UUID id) {
         final boolean vantagemDeletada = vantagemService.deletarVantagem(id);
         
         if (vantagemDeletada) {
