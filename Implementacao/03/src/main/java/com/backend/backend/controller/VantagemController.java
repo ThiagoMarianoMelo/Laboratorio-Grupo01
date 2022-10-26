@@ -71,8 +71,9 @@ public class VantagemController {
     @PostMapping("/obter")
     public ResponseEntity<Cupom> obterVantagem(
             @Valid @RequestBody ObterVantagemRequest request) {
-        final UsuarioEstudantil usuario = (UsuarioEstudantil) usuarioService.getUsuarioById(request.getUsuarioId());
-        final Cupom cupom = vantagemService.gerarCupom(request.getVantagemId(), usuario);
+        
+        final UsuarioEstudantil usuarioEncontrado = (UsuarioEstudantil) usuarioService.getUsuarioById(request.getUsuarioId());
+        final Cupom cupom = vantagemService.gerarCupom(request.getVantagemId(), usuarioEncontrado);
         return new ResponseEntity<>(cupom, HttpStatus.OK);
     }
 }
