@@ -31,6 +31,7 @@ public class UsuarioController {
     public ResponseEntity<Usuario> cadastro(
             @Valid @RequestBody CadastroBody request) {
         Usuario usuario = null;
+
         switch (request.getTipoDeUsuario()) {
             case ALUNO:
             case PROFESSOR:
@@ -39,6 +40,7 @@ public class UsuarioController {
             default:
                 break;
         }
+
         return new ResponseEntity<>(usuario, HttpStatus.OK);
     }
 
@@ -47,8 +49,8 @@ public class UsuarioController {
         @RequestParam(required = true) String email,
         @RequestParam(required = true) String password
     ){
-        final Usuario usuario = usuarioEstudantilService.login(email, password);
-        return new ResponseEntity<>(usuario , HttpStatus.OK);
+        final Usuario usuarioLogado = usuarioEstudantilService.login(email, password);
+        return new ResponseEntity<>(usuarioLogado , HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
@@ -58,6 +60,7 @@ public class UsuarioController {
         if(usuarioEstudantilService.deletarUsuario(id)){
             return new ResponseEntity<Boolean>(HttpStatus.OK);
         }
+        
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
