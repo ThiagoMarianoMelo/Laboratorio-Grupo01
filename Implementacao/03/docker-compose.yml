@@ -1,0 +1,32 @@
+version: '3.7'
+
+services:
+  psql_database:
+    image: postgres
+    environment:
+      POSTGRES_USER: lab03
+      POSTGRES_PASSWORD: lab03
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./database/data:/var/lib/postgresql/data
+    networks:
+      - database_net_lab03
+    restart: always
+  
+  pgsql_admin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: email@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: lab03
+    ports:
+      - "3030:80"
+    networks:
+      - database_net_lab03
+    depends_on:
+      - psql_database
+
+networks:
+  database_net_lab03:
+    driver: bridge
+    
