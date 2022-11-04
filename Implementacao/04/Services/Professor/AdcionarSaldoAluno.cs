@@ -12,11 +12,11 @@ public class AdcionarSaldo : IAdcionarSaldoAluno
             var conn = new DataBaseConnection().dataBaseConnection();
             conn.Open();
 
-            descontarSaldoContaProfessor(adcionarSaldoAlunoModel.valorQueSeraAdcionado, adcionarSaldoAlunoModel.professorFromRequest);
+            descontarSaldoContaProfessor(adcionarSaldoAlunoModel.valorQueSeraAdcionado, adcionarSaldoAlunoModel.idprofessorFromRequest);
 
-            var cmdSelect = new NpgsqlCommand("SELECT * FROM public.\"aluno\" WHERE \"cpf\" = @cpfAluno", conn);
+            var cmdSelect = new NpgsqlCommand("SELECT * FROM public.\"usuario\" WHERE \"idusuario\" = @idaluno", conn);
 
-            cmdSelect.Parameters.AddWithValue("cpfAluno", adcionarSaldoAlunoModel.cpfAluno);
+            cmdSelect.Parameters.AddWithValue("idaluno", adcionarSaldoAlunoModel.idaluno);
 
             var reader = cmdSelect.ExecuteReader();
 
@@ -28,10 +28,10 @@ public class AdcionarSaldo : IAdcionarSaldoAluno
 
             int saldoAtual = (int)reader["saldo"];
 
-            var cmd = new NpgsqlCommand("UPDATE  public.\"aluno\" SET \"saldo\" = @Saldo WHERE \"cpf\" = @cpfAluno", connUpdate);
+            var cmd = new NpgsqlCommand("UPDATE  public.\"usuario\" SET \"saldo\" = @Saldo WHERE \"idusuario\" = @idaluno", connUpdate);
 
 
-            cmd.Parameters.AddWithValue("cpfAluno", adcionarSaldoAlunoModel.cpfAluno);
+            cmd.Parameters.AddWithValue("idaluno", adcionarSaldoAlunoModel.idaluno);
             cmd.Parameters.AddWithValue("Saldo", saldoAtual + adcionarSaldoAlunoModel.valorQueSeraAdcionado);
 
             var reader2 = cmd.ExecuteReader();
@@ -45,14 +45,14 @@ public class AdcionarSaldo : IAdcionarSaldoAluno
     }
 
 
-    public void descontarSaldoContaProfessor(int saldoGasto, String cpfProfessor){
+    public void descontarSaldoContaProfessor(int saldoGasto, int idProfessor){
         
             var conn = new DataBaseConnection().dataBaseConnection();
             conn.Open();
 
-            var cmdSelect = new NpgsqlCommand("SELECT * FROM public.\"professor\" WHERE \"cpf\" = @cpfProfessor", conn);
+            var cmdSelect = new NpgsqlCommand("SELECT * FROM public.\"usuario\" WHERE \"idusuario\" = @idProfessor", conn);
 
-            cmdSelect.Parameters.AddWithValue("cpfProfessor", cpfProfessor);
+            cmdSelect.Parameters.AddWithValue("idProfessor", idProfessor);
 
             var reader = cmdSelect.ExecuteReader();
 
@@ -64,7 +64,7 @@ public class AdcionarSaldo : IAdcionarSaldoAluno
 
             int saldoAtual = (int)reader["saldo"];
 
-            var cmd = new NpgsqlCommand("UPDATE  public.\"professor\" SET \"saldo\" = @Saldo WHERE \"cpf\" = @cpfProfessor", connUpdate);
+            var cmd = new NpgsqlCommand("UPDATE  public.\"usuario\" SET \"saldo\" = @Saldo WHERE \"idusuario\" = @idProfessor", connUpdate);
 
             if(saldoAtual - saldoGasto < 0){
             
@@ -72,7 +72,7 @@ public class AdcionarSaldo : IAdcionarSaldoAluno
 
             }else{
 
-                 cmd.Parameters.AddWithValue("cpfProfessor", cpfProfessor);
+                 cmd.Parameters.AddWithValue("idProfessor", idProfessor);
                  cmd.Parameters.AddWithValue("Saldo", saldoAtual - saldoGasto);
 
                 var reader2 = cmd.ExecuteReader();

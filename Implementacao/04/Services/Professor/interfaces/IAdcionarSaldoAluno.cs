@@ -6,5 +6,5 @@ public interface IAdcionarSaldoAluno{
 
     public void adcionarSaldoAluno(AdcionarSaldoAlunoModel adcionarSaldoAlunoModel);
 
-    public void descontarSaldoContaProfessor(int saldoGasto, String cpfProfessor);
+    public void descontarSaldoContaProfessor(int saldoGasto, int cpfProfessor);
 }

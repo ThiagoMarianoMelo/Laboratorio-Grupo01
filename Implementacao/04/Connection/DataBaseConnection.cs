@@ -3,7 +3,9 @@ using Npgsql;
 
 public class DataBaseConnection{
 
-    public NpgsqlConnection dataBaseConnection() => new NpgsqlConnection("Host=ec2-54-163-34-107.compute-1.amazonaws.com;Username=kzrolhlsznxlko;Password=71cc3c45b803fb87cb2e680e2b1fe39d4a061db64795fe368aff062f591314bf;Database=deg8nlq06thguq");
+    //uri da connection: postgres://gsfedlqdwiptko:f321ae522eb2d3f9cf5dfb3cd562778cd1c8366b0d829c29ec574d10d1f62394@ec2-23-20-140-229.compute-1.amazonaws.com:5432/ddf5podsqc197u
+    //(?ssl=verify-full)
+    public NpgsqlConnection dataBaseConnection() => new NpgsqlConnection("Host=ec2-23-20-140-229.compute-1.amazonaws.com;Username=gsfedlqdwiptko;Password=f321ae522eb2d3f9cf5dfb3cd562778cd1c8366b0d829c29ec574d10d1f62394;Database=ddf5podsqc197u");
 
 }
 

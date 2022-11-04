@@ -6,7 +6,7 @@ using Sprint4.Services.Professor.Interfaces.IAdcionarSaldoAluno;
 using Sprint4.Models.Professor.AdcionarSaldoAlunoModel;
 
 [ApiController]
-public class ProfessorController : ControllerBase
+public class ProfessorController : ControllerBase 
 {
     IAdcionarSaldoAluno adcionandoSaldo;
 
