@@ -31,7 +31,24 @@ public class ListarTransacoes : IListarTransacoes
             transacaoEncontrada.anotacao = reader["anotacao"].ToString();
             transacaoEncontrada.preco = (int)reader["preco"];
 
-            transacoes.Add(transacaoEncontrada);  
+
+            var connUser = new DataBaseConnection().dataBaseConnection();
+
+            connUser.Open();
+
+            var cmdUser = new NpgsqlCommand("SELECT * FROM public.\"usuario\" WHERE \"idusuario\" = @IDUsuario", connUser);
+
+            cmdUser.Parameters.AddWithValue("IDUser", transacaoEncontrada.idUsuario);
+
+            var readerUser = cmdUser.ExecuteReader();
+
+            readerUser.Read();
+
+            transacaoEncontrada.saldoAtualUser = (int)readerUser["saldo"];
+
+            transacoes.Add(transacaoEncontrada);
+
+            connUser.Close();
 
         }
 
