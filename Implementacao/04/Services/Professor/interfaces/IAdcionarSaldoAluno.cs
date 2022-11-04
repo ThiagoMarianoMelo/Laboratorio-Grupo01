@@ -5,4 +5,6 @@ using Sprint4.Models.Professor.AdcionarSaldoAlunoModel;
 public interface IAdcionarSaldoAluno{
 
     public void adcionarSaldoAluno(AdcionarSaldoAlunoModel adcionarSaldoAlunoModel);
+
+    public void descontarSaldoContaProfessor(int saldoGasto, String cpfProfessor);
 }
