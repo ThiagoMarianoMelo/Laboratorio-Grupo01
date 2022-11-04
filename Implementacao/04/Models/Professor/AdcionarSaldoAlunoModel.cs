@@ -1,6 +1,5 @@
 namespace Sprint4.Models.Professor.AdcionarSaldoAlunoModel;
 
-
 public class AdcionarSaldoAlunoModel{
 
     public int idprofessorFromRequest { get; set; }
@@ -8,4 +7,6 @@ public class AdcionarSaldoAlunoModel{
     public String cpfAluno { get; set; }
 
     public int valorQueSeraAdcionado { get; set; }
+
+    public String anotacao { get; set;}
 }
