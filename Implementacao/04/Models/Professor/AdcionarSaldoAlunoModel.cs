@@ -5,7 +5,7 @@ public class AdcionarSaldoAlunoModel{
 
     public int idprofessorFromRequest { get; set; }
 
-    public int idaluno { get; set; }
+    public String cpfAluno { get; set; }
 
     public int valorQueSeraAdcionado { get; set; }
 }
