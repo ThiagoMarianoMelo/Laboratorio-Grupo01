@@ -4,8 +4,8 @@ using Npgsql;
 using Sprint4.Connection.DataBaseConnection;
 using Sprint4.Models.Professor.AdcionarSaldoAlunoModel;
 using Sprint4.Services.Professor.Interfaces.IAdcionarSaldoAluno;
-using Sprint4.Services.Transacao.CadastrarTransacao;
 using Sprint4.Models.Transacao.TrasacaoModel;
+using Sprint4.Services.Email.EmailService;
 
 public class AdcionarSaldo : IAdcionarSaldoAluno
 {
@@ -14,9 +14,9 @@ public class AdcionarSaldo : IAdcionarSaldoAluno
             var conn = new DataBaseConnection().dataBaseConnection();
             conn.Open();
 
-            var cmdSelect = new NpgsqlCommand("SELECT * FROM public.\"usuario\" WHERE \"cpf\" = @cpfAluno", conn);
+            var cmdSelect = new NpgsqlCommand("SELECT * FROM public.\"usuario\" WHERE \"cpf\" = @cpfProfessor", conn);
 
-            cmdSelect.Parameters.AddWithValue("cpfAluno", adcionarSaldoAlunoModel.cpfAluno);
+            cmdSelect.Parameters.AddWithValue("cpfProfessor", adcionarSaldoAlunoModel.cpfAluno);
 
             var reader = cmdSelect.ExecuteReader();
 
@@ -28,15 +28,15 @@ public class AdcionarSaldo : IAdcionarSaldoAluno
 
             int saldoAtual = (int)reader["saldo"];
 
-            var cmd = new NpgsqlCommand("UPDATE  public.\"usuario\" SET \"saldo\" = @Saldo WHERE \"cpf\" = @cpfAluno", connUpdate);
+            var cmd = new NpgsqlCommand("UPDATE  public.\"usuario\" SET \"saldo\" = @Saldo WHERE \"cpf\" = @cpfAluno RETURNING \"idusuario\" ", connUpdate);
 
 
             cmd.Parameters.AddWithValue("cpfAluno", adcionarSaldoAlunoModel.cpfAluno);
             cmd.Parameters.AddWithValue("Saldo", saldoAtual + adcionarSaldoAlunoModel.valorQueSeraAdcionado);
 
-            var reader2 = cmd.ExecuteReader();
+            int idAluno = (int)cmd.ExecuteScalar();
 
-            reader2.Read();
+            enviarEmailAluno(idAluno,adcionarSaldoAlunoModel.valorQueSeraAdcionado);
 
             conn.Close();
             connUpdate.Close();
@@ -50,6 +50,32 @@ public class AdcionarSaldo : IAdcionarSaldoAluno
             transacaoGerada.anotacao = adcionarSaldoAlunoModel.anotacao;
 
             return transacaoGerada;
+    }
+
+    public void enviarEmailAluno(int idAluno, int valorAdcionado){
+
+            var conn = new DataBaseConnection().dataBaseConnection();
+
+            conn.Open();
+
+            var cmdSelect = new NpgsqlCommand("SELECT * FROM public.\"aluno\" WHERE \"idaluno\" = @IDaluno", conn);
+
+            cmdSelect.Parameters.AddWithValue("IDaluno", idAluno);
+
+            var reader = cmdSelect.ExecuteReader();
+
+            reader.Read();
+
+            String email = reader["email"].ToString();
+
+            conn.Close();
+
+            String body = "Foram adcionados "+valorAdcionado+" pontos ao seu perfil :)";
+
+            EmailService sender = new EmailService();
+
+            sender.sendEmail(email,"Você recebeu novos pontos escolares, confira!", body);
+
     }
 
 }

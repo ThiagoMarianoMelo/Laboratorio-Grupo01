@@ -8,6 +8,7 @@ using Sprint4.Services.Transacao.CadastrarTransacao;
 using Sprint4.Models.Transacao.TrasacaoModel;
 using Sprint4.Services.Usuario.DescontarSaldo;
 
+
 [ApiController]
 public class ProfessorController : ControllerBase 
 {
@@ -31,6 +32,7 @@ public void addSaldoAluno( [FromBody] AdcionarSaldoAlunoModel modelAdcionarSaldo
     CadastrarTransacao cadastroDeTransacao = new CadastrarTransacao();
 
     cadastroDeTransacao.cadastrarTransacao(transacaoCriada);
-}
+
+    }
 
 }
