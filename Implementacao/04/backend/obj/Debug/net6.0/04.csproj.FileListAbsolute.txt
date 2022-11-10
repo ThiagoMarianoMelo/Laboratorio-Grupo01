@@ -39,3 +39,44 @@ C:\Faculdade\Laboratorio-Grupo01\Implementacao\04\backend\obj\Debug\net6.0\refin
 C:\Faculdade\Laboratorio-Grupo01\Implementacao\04\backend\obj\Debug\net6.0\04.pdb
 C:\Faculdade\Laboratorio-Grupo01\Implementacao\04\backend\obj\Debug\net6.0\04.genruntimeconfig.cache
 C:\Faculdade\Laboratorio-Grupo01\Implementacao\04\backend\obj\Debug\net6.0\ref\04.dll
+C:\Users\DTI Digital\Desktop\Laboratorio-Grupo01\Implementacao\04\backend\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\DTI Digital\Desktop\Laboratorio-Grupo01\Implementacao\04\backend\bin\Debug\net6.0\appsettings.json
+C:\Users\DTI Digital\Desktop\Laboratorio-Grupo01\Implementacao\04\backend\bin\Debug\net6.0\04.exe
+C:\Users\DTI Digital\Desktop\Laboratorio-Grupo01\Implementacao\04\backend\bin\Debug\net6.0\04.deps.json
+C:\Users\DTI Digital\Desktop\Laboratorio-Grupo01\Implementacao\04\backend\bin\Debug\net6.0\04.runtimeconfig.json
+C:\Users\DTI Digital\Desktop\Laboratorio-Grupo01\Implementacao\04\backend\bin\Debug\net6.0\04.dll
+C:\Users\DTI Digital\Desktop\Laboratorio-Grupo01\Implementacao\04\backend\bin\Debug\net6.0\04.pdb
+C:\Users\DTI Digital\Desktop\Laboratorio-Grupo01\Implementacao\04\backend\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\DTI Digital\Desktop\Laboratorio-Grupo01\Implementacao\04\backend\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\DTI Digital\Desktop\Laboratorio-Grupo01\Implementacao\04\backend\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\DTI Digital\Desktop\Laboratorio-Grupo01\Implementacao\04\backend\bin\Debug\net6.0\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\DTI Digital\Desktop\Laboratorio-Grupo01\Implementacao\04\backend\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\DTI Digital\Desktop\Laboratorio-Grupo01\Implementacao\04\backend\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\DTI Digital\Desktop\Laboratorio-Grupo01\Implementacao\04\backend\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\DTI Digital\Desktop\Laboratorio-Grupo01\Implementacao\04\backend\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\DTI Digital\Desktop\Laboratorio-Grupo01\Implementacao\04\backend\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
+C:\Users\DTI Digital\Desktop\Laboratorio-Grupo01\Implementacao\04\backend\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\DTI Digital\Desktop\Laboratorio-Grupo01\Implementacao\04\backend\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
+C:\Users\DTI Digital\Desktop\Laboratorio-Grupo01\Implementacao\04\backend\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+C:\Users\DTI Digital\Desktop\Laboratorio-Grupo01\Implementacao\04\backend\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Users\DTI Digital\Desktop\Laboratorio-Grupo01\Implementacao\04\backend\bin\Debug\net6.0\Npgsql.dll
+C:\Users\DTI Digital\Desktop\Laboratorio-Grupo01\Implementacao\04\backend\bin\Debug\net6.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Users\DTI Digital\Desktop\Laboratorio-Grupo01\Implementacao\04\backend\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\DTI Digital\Desktop\Laboratorio-Grupo01\Implementacao\04\backend\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\DTI Digital\Desktop\Laboratorio-Grupo01\Implementacao\04\backend\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\DTI Digital\Desktop\Laboratorio-Grupo01\Implementacao\04\backend\obj\Debug\net6.0\04.csproj.AssemblyReference.cache
+C:\Users\DTI Digital\Desktop\Laboratorio-Grupo01\Implementacao\04\backend\obj\Debug\net6.0\04.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\DTI Digital\Desktop\Laboratorio-Grupo01\Implementacao\04\backend\obj\Debug\net6.0\04.AssemblyInfoInputs.cache
+C:\Users\DTI Digital\Desktop\Laboratorio-Grupo01\Implementacao\04\backend\obj\Debug\net6.0\04.AssemblyInfo.cs
+C:\Users\DTI Digital\Desktop\Laboratorio-Grupo01\Implementacao\04\backend\obj\Debug\net6.0\04.csproj.CoreCompileInputs.cache
+C:\Users\DTI Digital\Desktop\Laboratorio-Grupo01\Implementacao\04\backend\obj\Debug\net6.0\04.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\DTI Digital\Desktop\Laboratorio-Grupo01\Implementacao\04\backend\obj\Debug\net6.0\04.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\DTI Digital\Desktop\Laboratorio-Grupo01\Implementacao\04\backend\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\DTI Digital\Desktop\Laboratorio-Grupo01\Implementacao\04\backend\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\DTI Digital\Desktop\Laboratorio-Grupo01\Implementacao\04\backend\obj\Debug\net6.0\scopedcss\bundle\04.styles.css
+C:\Users\DTI Digital\Desktop\Laboratorio-Grupo01\Implementacao\04\backend\obj\Debug\net6.0\04.csproj.CopyComplete
+C:\Users\DTI Digital\Desktop\Laboratorio-Grupo01\Implementacao\04\backend\obj\Debug\net6.0\04.dll
+C:\Users\DTI Digital\Desktop\Laboratorio-Grupo01\Implementacao\04\backend\obj\Debug\net6.0\refint\04.dll
+C:\Users\DTI Digital\Desktop\Laboratorio-Grupo01\Implementacao\04\backend\obj\Debug\net6.0\04.pdb
+C:\Users\DTI Digital\Desktop\Laboratorio-Grupo01\Implementacao\04\backend\obj\Debug\net6.0\04.genruntimeconfig.cache
+C:\Users\DTI Digital\Desktop\Laboratorio-Grupo01\Implementacao\04\backend\obj\Debug\net6.0\ref\04.dll
