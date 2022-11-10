@@ -7,7 +7,7 @@ using Sprint4.Services.Usuario.Interfaces.IListarDadosUsuario;
 
 public class ListarDadosUsuario : IListarDadosUsuario
 {
-    public UsuarioModel listarDadosUser(string cpfUsuario)
+    public UsuarioModel ListarDadosUser(string cpfUsuario)
     {
         var conn = new DataBaseConnection().dataBaseConnection();
 

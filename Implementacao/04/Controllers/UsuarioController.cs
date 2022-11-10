@@ -18,6 +18,6 @@ public class UsuarioController : ControllerBase
 
 [HttpGet]
 [Route("ListarDadosUsuario")]
-public UsuarioModel addSaldoAluno( [FromQuery] String cpfUsuario ) => listaDados.listarDadosUser(cpfUsuario);
+public UsuarioModel addSaldoAluno( [FromQuery] String cpfUsuario ) => listaDados.ListarDadosUser(cpfUsuario);
 
 }

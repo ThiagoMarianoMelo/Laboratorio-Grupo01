@@ -17,7 +17,7 @@ public class CadastrarVantagem : ICadastrarVantagem
 
         cmd.Parameters.AddWithValue("IDEmpresa", vantagem.idEmpresa);
         cmd.Parameters.AddWithValue("Descricao", vantagem.descricao);
-        cmd.Parameters.AddWithValue("UrlFoto", vantagem.descricao);
+        cmd.Parameters.AddWithValue("UrlFoto", vantagem.urlFoto);
         cmd.Parameters.AddWithValue("Preco", vantagem.preco);
 
         var reader = cmd.ExecuteReader();
