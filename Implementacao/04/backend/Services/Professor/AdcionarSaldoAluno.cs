@@ -27,6 +27,7 @@ public class AdcionarSaldo : IAdcionarSaldoAluno
             connUpdate.Open();
 
             int saldoAtual = (int)reader["saldo"];
+            int idbeneficiario = (int)reader["idusuario"];
 
             var cmd = new NpgsqlCommand("UPDATE  public.\"usuario\" SET \"saldo\" = @Saldo WHERE \"cpf\" = @cpfAluno RETURNING \"idusuario\" ", connUpdate);
 
@@ -48,6 +49,7 @@ public class AdcionarSaldo : IAdcionarSaldoAluno
             transacaoGerada.dataTransacao = DateTime.Now;
             transacaoGerada.preco = adcionarSaldoAlunoModel.valorQueSeraAdcionado;
             transacaoGerada.anotacao = adcionarSaldoAlunoModel.anotacao;
+            transacaoGerada.IdBeneficiario = idbeneficiario;
 
             return transacaoGerada;
     }

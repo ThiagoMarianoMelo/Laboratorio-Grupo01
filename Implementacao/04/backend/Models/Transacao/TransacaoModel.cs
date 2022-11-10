@@ -10,4 +10,6 @@ public class TrasacaoModel{
     public String anotacao {get; set; }
 
     public int preco {get; set; }
+
+    public int IdBeneficiario {get; set;}
 }

@@ -52,6 +52,43 @@ public class ListarTransacoes : IListarTransacoes
 
         }
 
+            var connbenef = new DataBaseConnection().dataBaseConnection();
+
+            connbenef.Open();
+
+            var cmdbenef = new NpgsqlCommand("SELECT * FROM public.\"transacao\" WHERE \"idbeneficiario\" = @IDusuario", connbenef);
+
+            cmdbenef.Parameters.AddWithValue("IDusuario", idUsuario);
+
+            var readerbenef = cmdbenef.ExecuteReader();
+
+            while(readerbenef.Read()){
+
+                bool transacaoNaoMapeada = false;
+
+                foreach (listarTransacaoModel transacao in transacoes )
+                {
+                    transacaoNaoMapeada = (transacao.idTransacao == (int)reader["idtransacao"]);
+                }
+
+                if(!transacaoNaoMapeada){
+
+                    listarTransacaoModel transacaoEncontrada = new listarTransacaoModel();
+
+                    transacaoEncontrada.idTransacao = (int)reader["idtransacao"];
+                    transacaoEncontrada.idUsuario = (int)reader["idusuario"];
+                    transacaoEncontrada.dataTransacao = (DateTime)reader["datatransacao"];
+                    transacaoEncontrada.anotacao = reader["anotacao"].ToString();
+                    transacaoEncontrada.preco = (int)reader["preco"];
+
+                    transacoes.Add(transacaoEncontrada);
+
+                }
+
+            }
+
+            connbenef.Close();
+
         conn.Close();
 
         return transacoes;
