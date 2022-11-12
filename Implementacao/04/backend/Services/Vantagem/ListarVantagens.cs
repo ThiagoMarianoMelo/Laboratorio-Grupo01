@@ -23,9 +23,11 @@ public class ListarVantagens : IListarVantagns{
 
             ListarVantagemModel vantagem = new ListarVantagemModel();
 
+            vantagem.idVantagem =  (int)reader["idvantagem"];
             vantagem.descricao  = reader["descricao"].ToString();
             vantagem.preco =  (int)reader["preco"];
             vantagem.urlFoto = reader["urlfoto"].ToString();
+            vantagem.idEmpresa = (int)reader["idempresa"];
 
             listaDeVantagens.Add(vantagem);
 

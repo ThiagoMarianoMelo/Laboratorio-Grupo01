@@ -11,9 +11,9 @@ public class DescontarSaldo : IDescontarSaldo
         var conn = new DataBaseConnection().dataBaseConnection();
             conn.Open();
 
-            var cmdSelect = new NpgsqlCommand("SELECT * FROM public.\"usuario\" WHERE \"idusuario\" = @idProfessor", conn);
+            var cmdSelect = new NpgsqlCommand("SELECT * FROM public.\"usuario\" WHERE \"idusuario\" = @idusuario", conn);
 
-            cmdSelect.Parameters.AddWithValue("idProfessor", idUsuario);
+            cmdSelect.Parameters.AddWithValue("idusuario", idUsuario);
 
             var reader = cmdSelect.ExecuteReader();
 
@@ -25,15 +25,15 @@ public class DescontarSaldo : IDescontarSaldo
 
             int saldoAtual = (int)reader["saldo"];
 
-            var cmd = new NpgsqlCommand("UPDATE  public.\"usuario\" SET \"saldo\" = @Saldo WHERE \"idusuario\" = @idProfessor", connUpdate);
+            var cmd = new NpgsqlCommand("UPDATE  public.\"usuario\" SET \"saldo\" = @Saldo WHERE \"idusuario\" = @idusuario", connUpdate);
 
             if(saldoAtual - saldoGasto < 0){
             
-                throw new Exception("O saldo do professor é inferior ao escolhido");
+                throw new Exception("Saldo insuficiente!");
 
             }else{
 
-                 cmd.Parameters.AddWithValue("idProfessor", idUsuario);
+                 cmd.Parameters.AddWithValue("idusuario", idUsuario);
                  cmd.Parameters.AddWithValue("Saldo", saldoAtual - saldoGasto);
 
                 var reader2 = cmd.ExecuteReader();
