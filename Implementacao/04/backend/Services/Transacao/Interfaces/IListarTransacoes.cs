@@ -4,6 +4,6 @@ using Sprint4.Models.Transacao.listarTransacaoModel;
 
 public interface IListarTransacoes{
 
-    public List<listarTransacaoModel> listarHistorico(int idUsuario);
+    public listarTransacaoModel listarHistorico(int idUsuario);
 
 }

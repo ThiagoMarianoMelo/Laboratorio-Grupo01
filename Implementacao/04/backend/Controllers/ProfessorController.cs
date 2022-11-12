@@ -19,13 +19,13 @@ public class ProfessorController : ControllerBase
         adcionandoSaldo = new AdcionarSaldo();
     }
 
-[HttpPatch]
+[HttpPost]
 [Route("AdcionarSaldo")]
 public void addSaldoAluno( [FromBody] AdcionarSaldoAlunoModel modelAdcionarSaldo ){
 
     DescontarSaldo ds = new DescontarSaldo();
 
-    ds.descontarSaldoContaProfessor(modelAdcionarSaldo.valorQueSeraAdcionado, modelAdcionarSaldo.idprofessorFromRequest);
+    ds.descontarSaldoConta(modelAdcionarSaldo.valorQueSeraAdcionado, modelAdcionarSaldo.idprofessorFromRequest);
 
     TrasacaoModel transacaoCriada  =  adcionandoSaldo.adcionarSaldoAluno(modelAdcionarSaldo);
 

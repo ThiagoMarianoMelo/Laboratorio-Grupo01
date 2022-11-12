@@ -17,6 +17,6 @@ public class TransacaoController : ControllerBase
 
 [HttpGet]
 [Route("ListarTransacoesUsuario")]
-public List<listarTransacaoModel> listarTransacoes( [FromQuery] int idusuario ) => listaTransacoes.listarHistorico(idusuario);
+public listarTransacaoModel listarTransacoes( [FromQuery] int idusuario ) => listaTransacoes.listarHistorico(idusuario);
 
 }
