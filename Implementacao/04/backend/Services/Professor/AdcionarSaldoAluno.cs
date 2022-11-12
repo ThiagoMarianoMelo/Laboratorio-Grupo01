@@ -14,9 +14,9 @@ public class AdcionarSaldo : IAdcionarSaldoAluno
             var conn = new DataBaseConnection().dataBaseConnection();
             conn.Open();
 
-            var cmdSelect = new NpgsqlCommand("SELECT * FROM public.\"usuario\" WHERE \"cpf\" = @cpfProfessor", conn);
+            var cmdSelect = new NpgsqlCommand("SELECT * FROM public.\"usuario\" WHERE \"cpf\" = @cpfaluno", conn);
 
-            cmdSelect.Parameters.AddWithValue("cpfProfessor", adcionarSaldoAlunoModel.cpfAluno);
+            cmdSelect.Parameters.AddWithValue("cpfaluno", adcionarSaldoAlunoModel.cpfAluno);
 
             var reader = cmdSelect.ExecuteReader();
 
@@ -27,15 +27,15 @@ public class AdcionarSaldo : IAdcionarSaldoAluno
             connUpdate.Open();
 
             int saldoAtual = (int)reader["saldo"];
-            int idbeneficiario = (int)reader["idusuario"];
+            int idAluno = (int)reader["idusuario"];
 
-            var cmd = new NpgsqlCommand("UPDATE  public.\"usuario\" SET \"saldo\" = @Saldo WHERE \"cpf\" = @cpfAluno RETURNING \"idusuario\" ", connUpdate);
+            var cmd = new NpgsqlCommand("UPDATE  public.\"usuario\" SET \"saldo\" = @Saldo WHERE \"cpf\" = @cpfAluno", connUpdate);
 
 
             cmd.Parameters.AddWithValue("cpfAluno", adcionarSaldoAlunoModel.cpfAluno);
             cmd.Parameters.AddWithValue("Saldo", saldoAtual + adcionarSaldoAlunoModel.valorQueSeraAdcionado);
 
-            int idAluno = (int)cmd.ExecuteScalar();
+            var readerUpdate = cmd.ExecuteReader();
 
             enviarEmailAluno(idAluno,adcionarSaldoAlunoModel.valorQueSeraAdcionado);
 
@@ -49,7 +49,7 @@ public class AdcionarSaldo : IAdcionarSaldoAluno
             transacaoGerada.dataTransacao = DateTime.Now;
             transacaoGerada.preco = adcionarSaldoAlunoModel.valorQueSeraAdcionado;
             transacaoGerada.anotacao = adcionarSaldoAlunoModel.anotacao;
-            transacaoGerada.IdBeneficiario = idbeneficiario;
+            transacaoGerada.IdBeneficiario = idAluno;
 
             return transacaoGerada;
     }

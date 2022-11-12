@@ -5,9 +5,10 @@ using Npgsql;
 using Sprint4.Connection.DataBaseConnection;
 using Sprint4.Models.Transacao.listarTransacaoModel;
 using Sprint4.Services.Transacao.Interfaces.IListarTransacoes;
+using Sprint4.Models.Transacao.TrasacaoModel;
 public class ListarTransacoes : IListarTransacoes
 {
-    public List<listarTransacaoModel> listarHistorico(int idUsuario)
+    public listarTransacaoModel listarHistorico(int idUsuario)
     {
         var conn = new DataBaseConnection().dataBaseConnection();
 
@@ -19,36 +20,21 @@ public class ListarTransacoes : IListarTransacoes
 
         var reader = cmd.ExecuteReader();
 
-        List<listarTransacaoModel> transacoes = new List<listarTransacaoModel>();
+        List<TrasacaoModel> transacoes = new List<TrasacaoModel>();
 
-        while(reader.Read()){
+        while(reader.Read()&& reader.HasRows){
 
-            listarTransacaoModel transacaoEncontrada = new listarTransacaoModel();
+            TrasacaoModel transacaoEncontrada = new TrasacaoModel();
 
-            transacaoEncontrada.idTransacao = (int)reader["idtransacao"];
-            transacaoEncontrada.idUsuario = (int)reader["idusuario"];
+            transacaoEncontrada.idtransacao = (int)reader["idtransacao"];
+            transacaoEncontrada.idusuario = (int)reader["idusuario"];
             transacaoEncontrada.dataTransacao = (DateTime)reader["datatransacao"];
             transacaoEncontrada.anotacao = reader["anotacao"].ToString();
             transacaoEncontrada.preco = (int)reader["preco"];
+            transacaoEncontrada.IdBeneficiario = (int)reader["idbeneficiario"];
 
-
-            var connUser = new DataBaseConnection().dataBaseConnection();
-
-            connUser.Open();
-
-            var cmdUser = new NpgsqlCommand("SELECT * FROM public.\"usuario\" WHERE \"idusuario\" = @IDUsuario", connUser);
-
-            cmdUser.Parameters.AddWithValue("IDUser", transacaoEncontrada.idUsuario);
-
-            var readerUser = cmdUser.ExecuteReader();
-
-            readerUser.Read();
-
-            transacaoEncontrada.saldoAtualUser = (int)readerUser["saldo"];
 
             transacoes.Add(transacaoEncontrada);
-
-            connUser.Close();
 
         }
 
@@ -56,41 +42,53 @@ public class ListarTransacoes : IListarTransacoes
 
             connbenef.Open();
 
-            var cmdbenef = new NpgsqlCommand("SELECT * FROM public.\"transacao\" WHERE \"idbeneficiario\" = @IDusuario", connbenef);
+            var cmdbenef = new NpgsqlCommand("SELECT * FROM public.\"historico\" WHERE \"idbeneficiario\" = @IDusuario", connbenef);
 
             cmdbenef.Parameters.AddWithValue("IDusuario", idUsuario);
 
             var readerbenef = cmdbenef.ExecuteReader();
 
-            while(readerbenef.Read()){
+            while(readerbenef.Read() && readerbenef.HasRows){
 
-                bool transacaoNaoMapeada = false;
+                    TrasacaoModel transacaoEncontrada = new TrasacaoModel();
 
-                foreach (listarTransacaoModel transacao in transacoes )
-                {
-                    transacaoNaoMapeada = (transacao.idTransacao == (int)reader["idtransacao"]);
-                }
+                    transacaoEncontrada.idtransacao = (int)readerbenef["idtransacao"];
+                    transacaoEncontrada.idusuario = (int)readerbenef["idusuario"];
+                    transacaoEncontrada.dataTransacao = (DateTime)readerbenef["datatransacao"];
+                    transacaoEncontrada.anotacao = readerbenef["anotacao"].ToString();
+                    transacaoEncontrada.preco = (int)readerbenef["preco"];
+                    transacaoEncontrada.IdBeneficiario = (int)readerbenef["idbeneficiario"];
 
-                if(!transacaoNaoMapeada){
-
-                    listarTransacaoModel transacaoEncontrada = new listarTransacaoModel();
-
-                    transacaoEncontrada.idTransacao = (int)reader["idtransacao"];
-                    transacaoEncontrada.idUsuario = (int)reader["idusuario"];
-                    transacaoEncontrada.dataTransacao = (DateTime)reader["datatransacao"];
-                    transacaoEncontrada.anotacao = reader["anotacao"].ToString();
-                    transacaoEncontrada.preco = (int)reader["preco"];
+                    listarTransacaoModel transacaoRetorno = new listarTransacaoModel();
 
                     transacoes.Add(transacaoEncontrada);
 
                 }
+                
+        listarTransacaoModel retorno = new listarTransacaoModel();
 
-            }
+        var connUser = new DataBaseConnection().dataBaseConnection();
 
-            connbenef.Close();
+        connUser.Open();
+
+        var cmdUser = new NpgsqlCommand("SELECT * FROM public.\"usuario\" WHERE \"idusuario\" = @IDUsuario", connUser);
+
+        cmdUser.Parameters.AddWithValue("IDUser", idUsuario);
+
+        var readerUser = cmdUser.ExecuteReader();
+
+        readerUser.Read();
+
+        retorno.saldoAtualUser = (int)readerUser["saldo"];
+        retorno.transacoes = transacoes;
+
+        connbenef.Close();
 
         conn.Close();
 
-        return transacoes;
+        connUser.Close();
+
+        return retorno;
     }
+
 }

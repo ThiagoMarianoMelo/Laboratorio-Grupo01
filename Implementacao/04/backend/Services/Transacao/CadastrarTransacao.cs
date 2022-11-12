@@ -13,12 +13,13 @@ public class CadastrarTransacao : ICadastrarTransacao
 
         conn.Open();
 
-        var cmd = new NpgsqlCommand("INSERT INTO public.\"historico\"(\"idusuario\",\"datatransacao\",\"anotacao\",\"preco\") VALUES (@IDUser,@Data,@Anotacao,@Preco)", conn);
+        var cmd = new NpgsqlCommand("INSERT INTO public.\"historico\"(\"idusuario\",\"datatransacao\",\"anotacao\",\"preco\",\"idbeneficiario\") VALUES (@IDUser,@Data,@Anotacao,@Preco,@IdBeneficiario)", conn);
 
         cmd.Parameters.AddWithValue("IDUser", transacao.idusuario);
         cmd.Parameters.AddWithValue("Data", transacao.dataTransacao);
         cmd.Parameters.AddWithValue("Anotacao", transacao.anotacao);
         cmd.Parameters.AddWithValue("Preco", transacao.preco);
+        cmd.Parameters.AddWithValue("IdBeneficiario", transacao.IdBeneficiario);
 
         var reader = cmd.ExecuteReader();
 

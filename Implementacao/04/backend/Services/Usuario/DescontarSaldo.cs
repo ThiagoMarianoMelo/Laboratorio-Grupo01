@@ -6,7 +6,7 @@ using Sprint4.Services.Usuario.Interfaces.IDescontarSaldo;
 
 public class DescontarSaldo : IDescontarSaldo
 {
-    public void descontarSaldoContaProfessor(int saldoGasto, int idUsuario)
+    public void descontarSaldoConta(int saldoGasto, int idUsuario)
     {
         var conn = new DataBaseConnection().dataBaseConnection();
             conn.Open();
