@@ -24,7 +24,7 @@ public class VantagemController : ControllerBase
 
 [HttpPost]
 [Route("cadastrar-vantagem")]
-public int addEmpresa( [FromBody] CadastrarVantagemModel vantagem ) => cadastrarVantagem.addVantagem(vantagem);
+public int addVantagem( [FromBody] CadastrarVantagemModel vantagem ) => cadastrarVantagem.addVantagem(vantagem);
 
 [HttpGet]
 [Route("listar-vantagens")]
