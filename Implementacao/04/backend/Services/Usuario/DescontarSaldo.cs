@@ -1,5 +1,6 @@
 namespace Sprint4.Services.Usuario.DescontarSaldo;
 
+using System;
 using Npgsql;
 using Sprint4.Connection.DataBaseConnection;
 using Sprint4.Services.Usuario.Interfaces.IDescontarSaldo;

@@ -11,6 +11,7 @@ using Sprint4.Models.Usuario.UsuarioLoginModel;
 using Sprint4.Models.Usuario.CadastrarUsuarioModel;
 using Sprint4.Models.Usuario.UsuarioLoginRetornoModel;
 using Sprint4.Services.Usuario.Interfaces.ICadastrarUsuarioServico;
+using System;
 
 [ApiController]
 public class UsuarioController : ControllerBase 

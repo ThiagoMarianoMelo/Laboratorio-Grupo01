@@ -1,3 +1,5 @@
+using System;
+
 namespace Sprint4.Services.Email.Interface.IEmailService;
 
 public interface IEmailService{

@@ -1,5 +1,6 @@
 namespace Sprint4.Services.Empresa.CadastrarEmpresa;
 
+using System;
 using Npgsql;
 using Sprint4.Connection.DataBaseConnection;
 using Sprint4.Models.Empresa.CadastrarEmpresaModel;

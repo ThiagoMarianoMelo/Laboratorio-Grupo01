@@ -1,3 +1,5 @@
+using System;
+
 namespace Sprint4.Models.Transacao.TrasacaoModel;
 
 public class TrasacaoModel{

@@ -6,6 +6,8 @@ using Sprint4.Connection.DataBaseConnection;
 using Sprint4.Models.Transacao.listarTransacaoModel;
 using Sprint4.Services.Transacao.Interfaces.IListarTransacoes;
 using Sprint4.Models.Transacao.TrasacaoModel;
+using System;
+
 public class ListarTransacoes : IListarTransacoes
 {
     public listarTransacaoModel listarHistorico(int idUsuario)
