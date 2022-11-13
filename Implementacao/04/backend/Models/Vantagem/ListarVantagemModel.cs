@@ -2,6 +2,10 @@ namespace Sprint4.Models.Vantagem.ListarVantagemModel;
 
 public class ListarVantagemModel{
 
+    public int idVantagem {get; set;}
+
+    public int   idEmpresa {get; set;}
+
     public String descricao { get; set; }
 
     public String urlFoto { get; set; }
