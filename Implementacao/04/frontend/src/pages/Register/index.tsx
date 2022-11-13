@@ -8,7 +8,7 @@ export interface IRegisterUserRequest {
     cpf: string;
     senha: string;
     nome: string;
-    idPerfil: number;
+    perfilId: number;
 }
 
 export function Register() {
@@ -21,12 +21,6 @@ export function Register() {
     const [password, setPassword] = useState('');
     const [nome, setNome] = useState('');
 
-    useEffect(() => {
-        if (user) {
-            navigate('/');
-        }
-    }, [])
-
     function handleRedirectToLogin() {
         navigate('/login');
     }
@@ -38,7 +32,7 @@ export function Register() {
             cpf,
             nome,
             senha: password,
-            idPerfil: ID_PERFIL_EMPRESA,
+            perfilId: ID_PERFIL_EMPRESA,
         };
 
         const userCreatedSucessfully = await UserRepository.Register(request);
@@ -58,11 +52,11 @@ export function Register() {
                 <h1>Cadastrar Empresa</h1>
                 <InputFieldsContainer action="" onSubmit={handleRegisterUser}>
                     <InputField>
-                        <label htmlFor="cpf">CPF:</label>
+                        <label htmlFor="cpf">CNPJ:</label>
                         <input 
                             type="text" 
                             name="cpf" 
-                            placeholder="Digite seu CPF" 
+                            placeholder="Digite seu CNPJ" 
                             value={cpf}
                             onChange={(e) => setCpf(e.target.value)}    
                         />

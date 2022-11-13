@@ -19,10 +19,6 @@ export const UserProvider = ({children}: IUserProvider) => {
     const [user, setUser] = useState<UserModel | null>(null)
     const navigate = useNavigate();
 
-    useEffect(() => {
-        verifyIfUserIsLoggedIn();
-    }, [user]);
-
     function verifyIfUserIsLoggedIn() {
         const userFound = localStorage.getItem('@sistema-moeda-estudantil:user')
 
@@ -37,6 +33,7 @@ export const UserProvider = ({children}: IUserProvider) => {
     function logoutUser() {
         localStorage.removeItem('@sistema-moeda-estudantil:user')
         setUser(null)
+        window.location.reload();
     }
 
     function saveUser(user: UserModel) {

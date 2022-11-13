@@ -7,12 +7,6 @@ import { Login } from './pages/Login';
 import { Register } from './pages/Register';
 
 export function Router() {
-    const { verifyIfUserIsLoggedIn } = useContext(UserContext);
-    
-    useEffect(() => {
-        verifyIfUserIsLoggedIn();
-    }, []);
-
     return (
         <Routes>
             <Route path="/" element={<DefaultLayout />}>
