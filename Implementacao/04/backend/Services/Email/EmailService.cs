@@ -1,5 +1,6 @@
 namespace Sprint4.Services.Email.EmailService;
 
+using System;
 using System.Net;
 using System.Net.Mail;
 using Sprint4.Services.Email.Interface.IEmailService;

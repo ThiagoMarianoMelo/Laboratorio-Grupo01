@@ -6,6 +6,7 @@ using Sprint4.Models.Professor.AdcionarSaldoAlunoModel;
 using Sprint4.Services.Professor.Interfaces.IAdcionarSaldoAluno;
 using Sprint4.Models.Transacao.TrasacaoModel;
 using Sprint4.Services.Email.EmailService;
+using System;
 
 public class AdcionarSaldo : IAdcionarSaldoAluno
 {

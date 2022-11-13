@@ -1,5 +1,6 @@
 namespace Sprint4.Services.Vantagem.ListarVantagens;
 
+using System.Collections.Generic;
 using Npgsql;
 using Sprint4.Connection.DataBaseConnection;
 using Sprint4.Models.Vantagem.ListarVantagemModel;

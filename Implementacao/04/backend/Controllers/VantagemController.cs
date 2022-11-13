@@ -8,25 +8,26 @@ using Sprint4.Services.Vantagem.CadastrarVantagem;
 using Sprint4.Services.Vantagem.Interface.IListarVantagns;
 using Sprint4.Services.Vantagem.ListarVantagens;
 using Sprint4.Models.Vantagem.ListarVantagemModel;
+using System.Collections.Generic;
 
 [ApiController]
-public class VatagemController : ControllerBase 
+public class VantagemController : ControllerBase 
 {
     ICadastrarVantagem cadastrarVantagem;
-    IListarVantagns listarVantagens;
+    IListarVantagns listarVantagns;
 
-    public VatagemController(){
+    public VantagemController(){
 
         cadastrarVantagem = new CadastrarVantagem();
-        listarVantagens    = new ListarVantagens();
+        listarVantagns    = new ListarVantagens();
     }
 
 [HttpPost]
 [Route("CadastrarVantagem")]
-public void addEmpresa( [FromBody] CadastrarVantagemModel vantagem ) => cadastrarVantagem.addVantagem(vantagem);
+public void addVantagem( [FromBody] CadastrarVantagemModel vantagem ) => cadastrarVantagem.addVantagem(vantagem);
 
 [HttpGet]
-[Route("listar-vantagens")]
-public List<ListarVantagemModel> listarTodasAsVantagens() => listarVantagens.listarVantagens();
+[Route("ListarVantagens")]
+public List<ListarVantagemModel> listVatangens() => listarVantagns.listarVantagens();
 
 }

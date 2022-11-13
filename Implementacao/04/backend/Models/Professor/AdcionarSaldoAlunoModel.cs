@@ -1,3 +1,5 @@
+using System;
+
 namespace Sprint4.Models.Professor.AdcionarSaldoAlunoModel;
 
 public class AdcionarSaldoAlunoModel{
