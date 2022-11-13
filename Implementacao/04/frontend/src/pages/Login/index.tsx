@@ -1,4 +1,4 @@
-import { FormEvent, useContext, useState } from "react";
+import { FormEvent, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 import { UserRepository } from "../../repositories/UserRepository";
@@ -10,11 +10,17 @@ export interface ILoginUserRequest {
 }
 
 export function Login() {
-    const { saveUser } = useContext(UserContext);
+    const { user, saveUser } = useContext(UserContext);
     const navigate = useNavigate();
 
     const [cpf, setCpf] = useState('');
     const [password, setPassword] = useState('');
+
+    useEffect(() => {
+        if (user) {
+            navigate('/');
+        }
+    }, [])
 
     async function handleLoginUser(event: FormEvent) {
         event.preventDefault();
@@ -61,6 +67,7 @@ export function Login() {
                         />
                     </InputField>
                     <button type="submit">Acessar conta</button>
+                    <button type="button">Cadastrar</button>
                 </InputFieldsContainer>
             </LoginContent>
         </LoginContainer>

@@ -8,5 +8,5 @@ public class UsuarioLoginRetornoModel{
     public String senha {get; set; }
     public int saldo {get; set; }
     public String nome {get; set; }
-    public bool isProfessor {get; set; }
+    public String perfil {get; set; }
 }

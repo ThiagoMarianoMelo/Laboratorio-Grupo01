@@ -1,5 +1,6 @@
 import { UserModel } from '../models/UserModel'
-import React, { ReactNode, useState } from 'react'
+import React, { ReactNode, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 export interface IUserContext {
     saveUser: (user: UserModel) => void;
@@ -16,12 +17,16 @@ export const UserContext = React.createContext<IUserContext>({} as IUserContext)
 
 export const UserProvider = ({children}: IUserProvider) => {
     const [user, setUser] = useState<UserModel | null>(null)
+    const navigate = useNavigate();
 
     function verifyIfUserIsLoggedIn() {
         const userFound = localStorage.getItem('@sistema-moeda-estudantil:user')
 
         if (userFound) {
             setUser(JSON.parse(userFound))
+        }
+        else {
+            navigate('/login');
         }
     }
 

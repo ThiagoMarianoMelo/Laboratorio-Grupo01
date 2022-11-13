@@ -21,16 +21,24 @@ export const InputFieldsContainer = styled.form`
     flex-direction: column;
     gap: 1.5rem;
 
-    button[type="submit"] {
-        margin-top: 1rem;
+    button {
         border-radius: 6px;
-        background: ${props => props.theme["purple-500"]};
-        color: ${props => props.theme.white};
         font-weight: bold;
         transition: background 0.2s;
         padding: 0.5rem 1rem;
         border: 0;
         cursor: pointer;
+    }
+
+    button[type="button"] {
+        background: ${props => props.theme["gray-300"]};
+        color: ${props => props.theme["gray-800"]};
+    }
+
+    button[type="submit"] {
+        margin-top: 1rem;
+        background: ${props => props.theme["purple-500"]};
+        color: ${props => props.theme.white};
     }
 `;
 

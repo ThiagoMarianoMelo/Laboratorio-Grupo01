@@ -32,9 +32,25 @@ public class LogarUsuario : ILogarUsuario{
             user.cpf = reader["cpf"].ToString();
             user.saldo = (int)reader["saldo"];
             user.senha = reader["senha"].ToString();
-            user.isProfessor = (bool) reader["isprofessor"];
 
+            int idPerfil = (int) reader["perfilid"];
+            
             conn.Close();
+            
+            var connectionPerfil = new DataBaseConnection().dataBaseConnection();
+            connectionPerfil.Open();
+            
+            var cmdPerfil = new NpgsqlCommand("SELECT * FROM public.\"perfil\" WHERE \"id\" = @idPerfil", connectionPerfil);
+            cmdPerfil.Parameters.AddWithValue("idPerfil", idPerfil);
+            var readerPerfil = cmdPerfil.ExecuteReader();
+
+            if(readerPerfil.HasRows) {
+                readerPerfil.Read();
+
+                user.perfil = readerPerfil["nome"].ToString();
+            }
+            
+            connectionPerfil.Close();
             return user;
         }
 
