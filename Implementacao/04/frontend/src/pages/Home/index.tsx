@@ -1,12 +1,15 @@
 import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
+import { PerfilUsuario } from "../../models/UserModel";
 import { VantagensModel } from "../../models/VantagensModel";
 import { VantagensRepositorio } from "../../repositories/VantagensRepository";
 import { ButtonAction, ButtonsContainer, HomeContainer, VantagensTable } from "./styles";
 
 export function Home() {
-    const { verifyIfUserIsLoggedIn } = useContext(UserContext);
+    const { user, verifyIfUserIsLoggedIn } = useContext(UserContext);
     const [vantagens, setVantagens] = useState<VantagensModel[]>([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         verifyIfUserIsLoggedIn();
@@ -18,7 +21,11 @@ export function Home() {
         setVantagens(response);
     }
 
-    return (
+    function handleRedirectToCreateVantagem() {
+        navigate('/vantagens/cadastrar');
+    }
+
+    return user && (
         <HomeContainer>
             <h1>Vantagens:</h1>
             <VantagensTable>
@@ -47,9 +54,11 @@ export function Home() {
                     })}
                 </tbody>
             </VantagensTable>
-            <ButtonsContainer>
-                <ButtonAction>Cadastrar vantagem</ButtonAction>
-            </ButtonsContainer>
+            {user.perfil === PerfilUsuario.EMPRESA && 
+                <ButtonsContainer>
+                    <ButtonAction type="button" onClick={handleRedirectToCreateVantagem}>Cadastrar vantagem</ButtonAction>
+                </ButtonsContainer>
+            }
         </HomeContainer>
     );
 }

@@ -5,6 +5,7 @@ import { DefaultLayout } from './layouts/DefaultLayout';
 import { Home } from './pages/Home';
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
+import { RegisterVantagem } from './pages/RegisterVantagem';
 
 export function Router() {
     return (
@@ -13,6 +14,7 @@ export function Router() {
                 <Route path="/" element={<Home />}/>
                 <Route path="/login" element={<Login />}/>
                 <Route path="/register" element={<Register />}/>
+                <Route path="/vantagens/cadastrar" element={<RegisterVantagem />}/>
             </Route>
         </Routes>
     );
