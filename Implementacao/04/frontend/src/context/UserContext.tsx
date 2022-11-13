@@ -19,6 +19,10 @@ export const UserProvider = ({children}: IUserProvider) => {
     const [user, setUser] = useState<UserModel | null>(null)
     const navigate = useNavigate();
 
+    useEffect(() => {
+        verifyIfUserIsLoggedIn();
+    }, [user]);
+
     function verifyIfUserIsLoggedIn() {
         const userFound = localStorage.getItem('@sistema-moeda-estudantil:user')
 

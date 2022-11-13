@@ -2,19 +2,24 @@ import { FormEvent, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 import { UserRepository } from "../../repositories/UserRepository";
-import { InputField, InputFieldsContainer, LoginContainer, LoginContent } from "./styles";
+import { InputField, InputFieldsContainer, RegisterContainer, RegisterContent } from "./styles";
 
-export interface ILoginUserRequest {
+export interface IRegisterUserRequest {
     cpf: string;
     senha: string;
+    nome: string;
+    idPerfil: number;
 }
 
-export function Login() {
+export function Register() {
+    const ID_PERFIL_EMPRESA = 3;
+
     const { user, saveUser } = useContext(UserContext);
     const navigate = useNavigate();
 
     const [cpf, setCpf] = useState('');
     const [password, setPassword] = useState('');
+    const [nome, setNome] = useState('');
 
     useEffect(() => {
         if (user) {
@@ -22,34 +27,36 @@ export function Login() {
         }
     }, [])
 
-    function handleRedirectToRegister() {
-        navigate('/register');
+    function handleRedirectToLogin() {
+        navigate('/login');
     }
 
-    async function handleLoginUser(event: FormEvent) {
+    async function handleRegisterUser(event: FormEvent) {
         event.preventDefault();
 
-        const request: ILoginUserRequest = {
+        const request: IRegisterUserRequest = {
             cpf,
-            senha: password
+            nome,
+            senha: password,
+            idPerfil: ID_PERFIL_EMPRESA,
         };
 
-        const userFound = await UserRepository.Login(request);
+        const userCreatedSucessfully = await UserRepository.Register(request);
         
-        if (userFound) {
-            saveUser(userFound);
+        if (userCreatedSucessfully) {
+            saveUser(userCreatedSucessfully);
             navigate('/');
         }
         else {
-            alert('Usuário não encontrado!');
+            alert('Erro ao cadastrar usuário!');
         }
     }
 
     return (
-        <LoginContainer>
-            <LoginContent>
-                <h1>Entrar</h1>
-                <InputFieldsContainer action="" onSubmit={handleLoginUser}>
+        <RegisterContainer>
+            <RegisterContent>
+                <h1>Cadastrar Empresa</h1>
+                <InputFieldsContainer action="" onSubmit={handleRegisterUser}>
                     <InputField>
                         <label htmlFor="cpf">CPF:</label>
                         <input 
@@ -58,6 +65,16 @@ export function Login() {
                             placeholder="Digite seu CPF" 
                             value={cpf}
                             onChange={(e) => setCpf(e.target.value)}    
+                        />
+                    </InputField>
+                    <InputField>
+                        <label htmlFor="nome">Nome:</label>
+                        <input 
+                            type="text" 
+                            name="nome" 
+                            placeholder="Digite seu nome" 
+                            value={nome}
+                            onChange={(e) => setNome(e.target.value)}    
                         />
                     </InputField>
                     <InputField>
@@ -70,10 +87,10 @@ export function Login() {
                             value={password}    
                         />
                     </InputField>
-                    <button type="submit">Acessar conta</button>
-                    <button type="button" onClick={handleRedirectToRegister}>Cadastrar</button>
+                    <button type="submit">Cadastrar</button>
+                    <button type="button" onClick={handleRedirectToLogin}>Acessar conta</button>
                 </InputFieldsContainer>
-            </LoginContent>
-        </LoginContainer>
+            </RegisterContent>
+        </RegisterContainer>
     )
 }
