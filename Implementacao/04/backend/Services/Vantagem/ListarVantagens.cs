@@ -27,10 +27,25 @@ public class ListarVantagens : IListarVantagns{
             vantagem.descricao  = reader["descricao"].ToString();
             vantagem.preco =  (int)reader["preco"];
             vantagem.urlFoto = reader["urlfoto"].ToString();
-            vantagem.idEmpresa = (int)reader["idempresa"];
+            vantagem.nome = reader["nome"].ToString();
 
+            int empresaId = (int)reader["idempresa"];
+
+            var connectionEmpresa = new DataBaseConnection().dataBaseConnection();
+            connectionEmpresa.Open();
+            
+            var cmdEmpresa = new NpgsqlCommand("SELECT * FROM public.\"usuario\" WHERE \"idusuario\" = @EmpresaId", connectionEmpresa);
+            cmdEmpresa.Parameters.AddWithValue("EmpresaId",empresaId );
+            var readerPerfil = cmdEmpresa.ExecuteReader();
+
+            if(readerPerfil.HasRows) {
+                readerPerfil.Read();
+
+                vantagem.Empresa = readerPerfil["nome"].ToString();
+            }
+            
+            connectionEmpresa.Close();
             listaDeVantagens.Add(vantagem);
-
         }
 
         conn.Close();

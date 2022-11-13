@@ -13,12 +13,12 @@ using Sprint4.Models.Vantagem.ListarVantagemModel;
 public class VatagemController : ControllerBase 
 {
     ICadastrarVantagem cadastrarVantagem;
-    IListarVantagns listarVantagns;
+    IListarVantagns listarVantagens;
 
     public VatagemController(){
 
         cadastrarVantagem = new CadastrarVantagem();
-        listarVantagns    = new ListarVantagens();
+        listarVantagens    = new ListarVantagens();
     }
 
 [HttpPost]
@@ -26,7 +26,7 @@ public class VatagemController : ControllerBase
 public void addEmpresa( [FromBody] CadastrarVantagemModel vantagem ) => cadastrarVantagem.addVantagem(vantagem);
 
 [HttpGet]
-[Route("ListarVantagens")]
-public List<ListarVantagemModel> listVatangens() => listarVantagns.listarVantagens();
+[Route("listar-vantagens")]
+public List<ListarVantagemModel> listarTodasAsVantagens() => listarVantagens.listarVantagens();
 
 }
