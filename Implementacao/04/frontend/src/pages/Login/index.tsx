@@ -6,7 +6,7 @@ import { InputField, InputFieldsContainer, LoginContainer, LoginContent } from "
 
 export interface ILoginUserRequest {
     cpf: string;
-    password: string;
+    senha: string;
 }
 
 export function Login() {
@@ -21,7 +21,7 @@ export function Login() {
 
         const request: ILoginUserRequest = {
             cpf,
-            password
+            senha: password
         };
 
         const userFound = await UserRepository.Login(request);

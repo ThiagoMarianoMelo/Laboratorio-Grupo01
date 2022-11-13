@@ -11,7 +11,6 @@ using Sprint4.Services.Interfaces.Usuario.ILogarUsuario;
 public class LogarUsuario : ILogarUsuario{
 
     public UsuarioLoginRetornoModel Login(UsuarioLoginModel usuario){
-
         var conn = new DataBaseConnection().dataBaseConnection();
 
         conn.Open();

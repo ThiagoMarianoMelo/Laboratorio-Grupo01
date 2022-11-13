@@ -29,6 +29,6 @@ public UsuarioModel addSaldoAluno( [FromQuery] String cpfUsuario ) => listaDados
 
 [HttpPost]
 [Route("Login")]
-public  UsuarioLoginRetornoModel logarUser( [FromQuery] UsuarioLoginModel user ) => logarUsuario.Login(user);
+public  UsuarioLoginRetornoModel logarUser( [FromBody] UsuarioLoginModel user ) => logarUsuario.Login(user);
 
 }
