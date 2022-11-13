@@ -27,8 +27,8 @@ public class AlunoController : ControllerBase
     }
 
 [HttpPost]
-[Route("comprarVantagem")]
-    public void adquirirVantagem( [FromBody] ComprarVantagemModel modelAdquiriVantagemModel){
+[Route("comprar-vantagem")]
+    public int adquirirVantagem( [FromBody] ComprarVantagemModel modelAdquiriVantagemModel){
 
         ListarVantagemModel vantagemEscolhida = encontrarVantagemEscolhida.getVantagem(modelAdquiriVantagemModel.idVantagem);
 
@@ -42,7 +42,7 @@ public class AlunoController : ControllerBase
         transacaoGerada.dataTransacao = DateTime.Now;
         transacaoGerada.preco = vantagemEscolhida.preco;
 
-        cadastrarTransacao.cadastrarTransacao(transacaoGerada);
+        return cadastrarTransacao.cadastrarTransacao(transacaoGerada);
 
     }
 

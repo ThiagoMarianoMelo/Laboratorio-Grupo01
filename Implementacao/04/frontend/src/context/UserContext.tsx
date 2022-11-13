@@ -6,6 +6,7 @@ export interface IUserContext {
     saveUser: (user: UserModel) => void;
     verifyIfUserIsLoggedIn: () => void;
     user: UserModel | null;
+    atualizarSaldo(valor: number): void;
     logoutUser: () => void;
 }
 
@@ -42,9 +43,22 @@ export const UserProvider = ({children}: IUserProvider) => {
         localStorage.setItem('@sistema-moeda-estudantil:user', userJSON)
     }
 
+    function atualizarSaldo(valor: number) {
+        if (user) {
+            const saldoAtualizado = user.saldo - valor;
+            const userAtualizado: UserModel = {
+                ...user,
+                saldo: saldoAtualizado
+            }
+            
+            localStorage.setItem('@sistema-moeda-estudantil:user',JSON.stringify(userAtualizado))
+        }
+    }
+
     const store: IUserContext = {
         saveUser,
         verifyIfUserIsLoggedIn,
+        atualizarSaldo,
         user,
         logoutUser
     }

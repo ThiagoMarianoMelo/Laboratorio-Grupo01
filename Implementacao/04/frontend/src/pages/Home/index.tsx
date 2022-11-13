@@ -3,11 +3,17 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 import { PerfilUsuario } from "../../models/UserModel";
 import { VantagensModel } from "../../models/VantagensModel";
+import { AlunoRepository } from "../../repositories/AlunoRepository";
 import { VantagensRepositorio } from "../../repositories/VantagensRepository";
 import { ButtonAction, ButtonsContainer, HomeContainer, VantagensTable } from "./styles";
 
+export interface IBuyVantagemRequest {
+    idVantagem: number;
+    idAluno: number;
+}
+
 export function Home() {
-    const { user, verifyIfUserIsLoggedIn } = useContext(UserContext);
+    const { user, verifyIfUserIsLoggedIn, atualizarSaldo } = useContext(UserContext);
     const [vantagens, setVantagens] = useState<VantagensModel[]>([]);
     const navigate = useNavigate();
 
@@ -25,6 +31,31 @@ export function Home() {
         navigate('/vantagens/cadastrar');
     }
 
+    async function handleBuyVantagem(vantagem: VantagensModel) {
+        if (user?.perfil === PerfilUsuario.ALUNO) {
+            const confirmation = confirm(`Você tem certeza que quer comprar ${vantagem.nome} por ${vantagem.preco} moedas`);
+            
+            if (confirmation) {
+                const request: IBuyVantagemRequest = {
+                    idAluno: user.idUsuario,
+                    idVantagem: vantagem.idVantagem
+                }
+    
+                try {
+                    const boughtSuccessfully = await AlunoRepository.ComprarVantagem(request);
+                    if (boughtSuccessfully) {
+                        atualizarSaldo(vantagem.preco);
+                        alert('Vantagem comprada com sucesso');
+                        window.location.reload();
+                    }
+                }
+                catch(err) {
+                    alert('Saldo insuficiente');
+                }
+            }
+        }
+    }
+
     return user && (
         <HomeContainer>
             <h1>Vantagens:</h1>
@@ -39,16 +70,17 @@ export function Home() {
                 </thead>
                 <tbody>
                     {vantagens.map(vant => {
-                        const priceInBRL = vant.preco.toLocaleString('pt-br', {minimumFractionDigits: 2})
                         return (
                             <tr key={vant.idVantagem}>
                                 <td>
                                     <img src={vant.urlFoto} alt="" />
-                                    <strong>{vant.nome}</strong>
+                                    <button onClick={() => handleBuyVantagem(vant)} type="button">
+                                        <strong>{vant.nome}</strong>
+                                    </button>
                                 </td>
                                 <td>{vant.empresa}</td>
                                 <td>{vant.descricao}</td>
-                                <td>R$ {priceInBRL}</td>
+                                <td>{vant.preco} moedas</td>
                             </tr>
                         )
                     })}

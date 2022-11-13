@@ -4,5 +4,5 @@ using Sprint4.Models.Transacao.TrasacaoModel;
 
 public interface ICadastrarTransacao{
 
-    public void cadastrarTransacao(TrasacaoModel transacao);
+    public int cadastrarTransacao(TrasacaoModel transacao);
 }

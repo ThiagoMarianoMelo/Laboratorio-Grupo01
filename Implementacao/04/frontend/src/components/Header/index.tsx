@@ -13,8 +13,8 @@ export function Header() {
                 {user && (
                     <UserActionsAndInfo>
                         <UserProfile>
-                            <span>Seja bem vindo,</span>
-                            <strong>{user.nome} | <em>{user.perfil}</em></strong>
+                            <span>Seja bem vindo, <strong>{user.nome} | <em>{user.perfil}</em></strong></span>
+                            <strong>{user.saldo} moedas</strong>
                         </UserProfile>
                         <button 
                             type="button" 

@@ -7,13 +7,13 @@ using Sprint4.Services.Transacao.Interfaces.ICadastrarTransacao;
 
 public class CadastrarTransacao : ICadastrarTransacao
 {
-    public void cadastrarTransacao(TrasacaoModel transacao)
+    public int cadastrarTransacao(TrasacaoModel transacao)
     {
         var conn = new DataBaseConnection().dataBaseConnection();
 
         conn.Open();
 
-        var cmd = new NpgsqlCommand("INSERT INTO public.\"historico\"(\"idusuario\",\"datatransacao\",\"anotacao\",\"preco\",\"idbeneficiario\") VALUES (@IDUser,@Data,@Anotacao,@Preco,@IdBeneficiario)", conn);
+        var cmd = new NpgsqlCommand("INSERT INTO public.\"historico\"(\"idusuario\",\"datatransacao\",\"anotacao\",\"preco\",\"idbeneficiario\") VALUES (@IDUser,@Data,@Anotacao,@Preco,@IdBeneficiario) RETURNING idtransacao", conn);
 
         cmd.Parameters.AddWithValue("IDUser", transacao.idusuario);
         cmd.Parameters.AddWithValue("Data", transacao.dataTransacao);
@@ -24,7 +24,12 @@ public class CadastrarTransacao : ICadastrarTransacao
         var reader = cmd.ExecuteReader();
 
         reader.Read();
+        if (reader.HasRows) {
+            int idTransacao = (int) reader["idtransacao"];
+            conn.Close();
+            return idTransacao;
+        }
 
-        conn.Close();
+        return 0;
     }
 }
