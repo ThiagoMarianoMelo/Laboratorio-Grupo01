@@ -21,4 +21,8 @@ public class EmpresaController : ControllerBase
 [Route("CadastrarEmpresa")]
 public void addEmpresa( [FromBody] CadastrarEmpresaModel empresa ) => cadastrarEmpresa.addEmpresa(empresa);
 
+[HttpPost]
+[Route("LoginEmpresa")]
+public void LogarEmpresa( [FromBody] CadastrarEmpresaModel empresa ) => cadastrarEmpresa.addEmpresa(empresa);
+
 }
