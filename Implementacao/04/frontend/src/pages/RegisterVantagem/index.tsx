@@ -29,7 +29,7 @@ export function RegisterVantagem() {
         navigate('/');
     }
 
-    async function handleRegisterUser(event: FormEvent) {
+    async function registrarVantagem(event: FormEvent) {
         event.preventDefault();
 
         const request: IRegisterVantagemRequest = {
@@ -54,7 +54,7 @@ export function RegisterVantagem() {
         <RegisterContainer>
             <RegisterContent>
                 <h1>Cadastrar Vantagem</h1>
-                <InputFieldsContainer action="" onSubmit={handleRegisterUser}>
+                <InputFieldsContainer action="" onSubmit={registrarVantagem}>
                     <InputField>
                         <label htmlFor="nome">Nome:</label>
                         <input 

@@ -19,11 +19,11 @@ export function Home() {
 
     useEffect(() => {
         verifyIfUserIsLoggedIn();
-        handleGetAllVantagens();
+        obterTodasAsVantagens();
     }, []);
 
-    async function handleGetAllVantagens() {
-        const response = await VantagensRepositorio.ListVantagens();
+    async function obterTodasAsVantagens() {
+        const response = await VantagensRepositorio.ListarVantagens();
         setVantagens(response);
     }
 
@@ -31,7 +31,7 @@ export function Home() {
         navigate('/vantagens/cadastrar');
     }
 
-    async function handleBuyVantagem(vantagem: VantagensModel) {
+    async function comprarVantagem(vantagem: VantagensModel) {
         if (user?.perfil === PerfilUsuario.ALUNO) {
             const confirmation = confirm(`Você tem certeza que quer comprar ${vantagem.nome} por ${vantagem.preco} moedas`);
             
@@ -74,7 +74,7 @@ export function Home() {
                             <tr key={vant.idVantagem}>
                                 <td>
                                     <img src={vant.urlFoto} alt="" />
-                                    <button onClick={() => handleBuyVantagem(vant)} type="button">
+                                    <button onClick={() => comprarVantagem(vant)} type="button">
                                         <strong>{vant.nome}</strong>
                                     </button>
                                 </td>

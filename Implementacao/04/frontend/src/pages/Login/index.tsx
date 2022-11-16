@@ -26,7 +26,7 @@ export function Login() {
         navigate('/register');
     }
 
-    async function handleLoginUser(event: FormEvent) {
+    async function fazerLogin(event: FormEvent) {
         event.preventDefault();
 
         const request: ILoginUserRequest = {
@@ -49,7 +49,7 @@ export function Login() {
         <LoginContainer>
             <LoginContent>
                 <h1>Entrar</h1>
-                <InputFieldsContainer action="" onSubmit={handleLoginUser}>
+                <InputFieldsContainer action="" onSubmit={fazerLogin}>
                     <InputField>
                         <label htmlFor="cpf">CPF:</label>
                         <input 

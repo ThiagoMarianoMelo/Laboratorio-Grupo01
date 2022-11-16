@@ -25,7 +25,7 @@ export function Register() {
         navigate('/login');
     }
 
-    async function handleRegisterUser(event: FormEvent) {
+    async function registrarUsuario(event: FormEvent) {
         event.preventDefault();
 
         const request: IRegisterUserRequest = {
@@ -50,7 +50,7 @@ export function Register() {
         <RegisterContainer>
             <RegisterContent>
                 <h1>Cadastrar Empresa</h1>
-                <InputFieldsContainer action="" onSubmit={handleRegisterUser}>
+                <InputFieldsContainer action="" onSubmit={registrarUsuario}>
                     <InputField>
                         <label htmlFor="cpf">CNPJ:</label>
                         <input 

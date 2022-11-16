@@ -4,7 +4,7 @@ import { VantagensModel } from "../models/VantagensModel";
 import { IRegisterVantagemRequest } from "../pages/RegisterVantagem";
 
 class VantagensRepositorio {
-    public async ListVantagens(): Promise<VantagensModel[]> {
+    public async ListarVantagens(): Promise<VantagensModel[]> {
         const url = '/listar-vantagens';
 
         const response = await axios.get(url);
