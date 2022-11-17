@@ -5,4 +5,5 @@ public class ComprarVantagemModel{
     public int idAluno {get; set;}
 
     public int idVantagem {get; set;}
+    
 }

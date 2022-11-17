@@ -28,6 +28,19 @@ public class EncontrarVantagem: IEcontrarVantagem {
         vantagem.urlFoto = reader["urlfoto"].ToString();
         vantagem.idEmpresa = (int)reader["idempresa"];
 
+        var connectionEmpresa = new DataBaseConnection().dataBaseConnection();
+        connectionEmpresa.Open();
+        
+        var cmdEmpresa = new NpgsqlCommand("SELECT * FROM public.\"usuario\" WHERE \"idusuario\" = @EmpresaId", connectionEmpresa);
+        cmdEmpresa.Parameters.AddWithValue("EmpresaId", vantagem.idEmpresa);
+        var readerPerfil = cmdEmpresa.ExecuteReader();
+
+        if(readerPerfil.HasRows) {
+            readerPerfil.Read();
+
+            vantagem.Empresa = readerPerfil["email"].ToString();
+        }
+            
         conn.Close();
 
         return vantagem;

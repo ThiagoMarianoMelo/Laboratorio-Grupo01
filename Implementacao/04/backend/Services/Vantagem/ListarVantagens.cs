@@ -42,7 +42,7 @@ public class ListarVantagens : IListarVantagns{
             if(readerPerfil.HasRows) {
                 readerPerfil.Read();
 
-                vantagem.Empresa = readerPerfil["nome"].ToString();
+                vantagem.Empresa = readerPerfil["email"].ToString();
             }
             
             connectionEmpresa.Close();

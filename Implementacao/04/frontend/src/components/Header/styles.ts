@@ -16,6 +16,7 @@ export const HeaderContent = styled.div`
     h3 {
         letter-spacing: 0.11rem;
         color: ${props => props.theme["gray-800"]};
+        cursor: pointer;
     } 
 
     button {
@@ -32,7 +33,7 @@ export const HeaderContent = styled.div`
 export const UserActionsAndInfo = styled.div`
     display: flex;
     align-items: center;
-    gap: 4rem;
+    gap: 3rem;
 `;
 
 export const UserProfile = styled.div`
@@ -45,3 +46,9 @@ export const UserProfile = styled.div`
         text-transform: capitalize;
     }
 `;
+
+export const Actions = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+`

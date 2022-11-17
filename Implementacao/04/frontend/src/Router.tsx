@@ -2,6 +2,7 @@ import { useContext, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { UserContext } from './context/UserContext';
 import { DefaultLayout } from './layouts/DefaultLayout';
+import { Extrato } from './pages/Extrato';
 import { Home } from './pages/Home';
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
@@ -15,6 +16,7 @@ export function Router() {
                 <Route path="/login" element={<Login />}/>
                 <Route path="/register" element={<Register />}/>
                 <Route path="/vantagens/cadastrar" element={<RegisterVantagem />}/>
+                <Route path="/extrato" element={<Extrato />}/>
             </Route>
         </Routes>
     );
