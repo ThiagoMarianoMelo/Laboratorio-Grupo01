@@ -34,8 +34,7 @@ public class ListarTransacoes : IListarTransacoes
             transacaoEncontrada.anotacao = reader["anotacao"].ToString();
             transacaoEncontrada.preco = (int)reader["preco"];
             transacaoEncontrada.IdBeneficiario = (int)reader["idbeneficiario"];
-
-
+            
             transacoes.Add(transacaoEncontrada);
 
         }

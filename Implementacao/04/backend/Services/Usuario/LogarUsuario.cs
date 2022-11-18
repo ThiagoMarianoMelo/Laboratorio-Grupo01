@@ -32,6 +32,7 @@ public class LogarUsuario : ILogarUsuario{
             user.cpf = reader["cpf"].ToString();
             user.saldo = (int)reader["saldo"];
             user.senha = reader["senha"].ToString();
+            user.Email = reader["email"].ToString();
 
             int idPerfil = (int) reader["perfilid"];
             

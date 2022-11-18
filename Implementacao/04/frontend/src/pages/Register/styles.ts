@@ -16,6 +16,13 @@ export const RegisterContent = styled.main`
     gap: 1.5rem;
 `;
 
+export const SelectTypeForm = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+`
+
 export const InputFieldsContainer = styled.form`
     display: flex;
     flex-direction: column;

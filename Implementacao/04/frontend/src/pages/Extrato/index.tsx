@@ -2,7 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../context/UserContext";
 import { TransacaoModel } from "../../models/TransacaoModel";
 import { TransacoesRepository } from "../../repositories/TransacoesRepository";
-import { ExtratoContainer } from "./styles";
+import { ExtratoContainer, ExtratoTable } from "./styles";
+import { format, parseISO } from 'date-fns';
 
 export function Extrato () {
     const { user } = useContext(UserContext);
@@ -14,9 +15,10 @@ export function Extrato () {
 
     async function obterTransacoesUsuario() {
         if (user) {
+            console.log('if')
             const resposta = await TransacoesRepository.ObterTransacoes(user.idUsuario);
             if (resposta) {
-                setTransacoes(resposta)
+                setTransacoes(resposta.transacoes)
             }
             else {
                 alert('Erro ao tentar obter as transações')
@@ -27,28 +29,29 @@ export function Extrato () {
 
     return (
         <ExtratoContainer>
-            <table>
+            <h1>Extrato</h1>
+            <ExtratoTable>
             <thead>
                     <tr>
                         <th>Valor</th>
-                        <th>Enviado por</th>
                         <th>Anotações</th>
                         <th>Data da transação</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {/* {transacoes.map(transacao => {
+                    {transacoes.map(transacao => {
+                        const dataISO = parseISO(transacao.dataTransacao);
+                        const dataFormatada = format(dataISO, 'dd/MM/yyyy')
                         return (
                             <tr key={transacao.idTransacao}>
                                 <td>{transacao.preco} moedas</td>
-                                <td>{transacao.}</td>
-                                <td>{vant.descricao}</td>
-                                <td>{vant.preco} moedas</td>
+                                <td>{transacao.anotacao}</td>
+                                <td>{dataFormatada}</td>
                             </tr>
                         )
-                    })} */}
+                    })}
                 </tbody>
-            </table>
+            </ExtratoTable>
         </ExtratoContainer>
     )
 }

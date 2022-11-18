@@ -35,7 +35,6 @@ export function Login() {
         };
 
         const userFound = await UserRepository.Login(request);
-        
         if (userFound) {
             saveUser(userFound);
             navigate('/');

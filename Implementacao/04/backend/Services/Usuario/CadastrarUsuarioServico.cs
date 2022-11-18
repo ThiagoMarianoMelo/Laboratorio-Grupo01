@@ -14,10 +14,11 @@ public class CadastrarUsuarioServico : ICadastrarUsuarioServico {
         var conn = new DataBaseConnection().dataBaseConnection();
         conn.Open();
 
-        var cmd = new NpgsqlCommand("INSERT INTO public.\"usuario\"(\"nome\",\"cpf\",\"senha\",\"saldo\",\"perfilid\") VALUES (@Nome, @Cpf, @Senha, 0, @PerfilId) RETURNING idusuario", conn);
+        var cmd = new NpgsqlCommand("INSERT INTO public.\"usuario\"(\"nome\",\"cpf\",\"senha\",\"saldo\",\"perfilid\",\"email\") VALUES (@Nome, @Cpf, @Senha, 0, @PerfilId, @Email) RETURNING idusuario", conn);
 
         cmd.Parameters.AddWithValue("Nome", usuario.Nome);
         cmd.Parameters.AddWithValue("Cpf", usuario.Cpf);
+        cmd.Parameters.AddWithValue("Email", usuario.Email);
         cmd.Parameters.AddWithValue("Saldo", 0);
         cmd.Parameters.AddWithValue("PerfilId", usuario.PerfilId);
         cmd.Parameters.AddWithValue("Senha", usuario.Senha);
@@ -34,6 +35,7 @@ public class CadastrarUsuarioServico : ICadastrarUsuarioServico {
             user.cpf = usuario.Cpf;
             user.saldo = 0;
             user.senha = usuario.Senha;
+            user.Email = usuario.Email;
             user.perfil = "Empresa";
             conn.Close();
             return user;

@@ -7,6 +7,7 @@ public class TrasacaoModel{
     public int idtransacao {get; set;}
 
     public int idusuario {get; set; }
+    public String EmailUsuario {get;set;}
 
     public DateTime dataTransacao {get; set; }
 
