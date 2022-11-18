@@ -3,6 +3,7 @@ export interface UserModel {
     cpf: string;
     senha: string;
     nome: string;
+    email?: string;
     saldo: number;
     perfil: PerfilUsuario;
 }

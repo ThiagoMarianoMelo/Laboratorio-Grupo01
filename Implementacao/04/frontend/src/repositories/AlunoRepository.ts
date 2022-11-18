@@ -17,6 +17,14 @@ class AlunoRepository {
 
         return response.data;
     }
+
+    public async ObterAlunos(): Promise<UserModel[] | null> {
+        const url = '/listar-alunos';
+
+        const response = await axios.get(url);
+
+        return response.data;
+    }
 }
 
 const instance = new AlunoRepository();

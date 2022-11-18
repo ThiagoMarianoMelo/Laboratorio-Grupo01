@@ -15,6 +15,7 @@ using System;
 using Sprint4.Services.Email.EmailService;
 using Sprint4.Connection.DataBaseConnection;
 using Npgsql;
+using Sprint4.Models.Usuario.UsuarioLoginRetornoModel;
 
 [ApiController]
 public class AlunoController : ControllerBase 
@@ -22,12 +23,19 @@ public class AlunoController : ControllerBase
     public IEcontrarVantagem encontrarVantagemEscolhida;
     public ICadastrarTransacao cadastrarTransacao;
     public IDescontarSaldo descontarSaldo;
+    public IObterAlunosServico obterAlunosServico;
+
 
     public AlunoController(){
         encontrarVantagemEscolhida = new EncontrarVantagem();
         cadastrarTransacao = new CadastrarTransacao();
         descontarSaldo = new DescontarSaldo();
+        obterAlunosServico = new ObterAlunosServico();
     }
+
+    [HttpGet]
+    [Route("listar-alunos")]
+    public List<UsuarioLoginRetornoModel> ObterAlunos() => obterAlunosServico.ObterUsuarios();
 
 [HttpPost]
 [Route("comprar-vantagem")]
