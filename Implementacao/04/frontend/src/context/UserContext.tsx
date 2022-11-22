@@ -34,7 +34,7 @@ export const UserProvider = ({children}: IUserProvider) => {
     function logoutUser() {
         localStorage.removeItem('@sistema-moeda-estudantil:user')
         setUser(null)
-        window.location.reload();
+        navigate('/');
     }
 
     function saveUser(user: UserModel) {

@@ -10,14 +10,14 @@ using System;
 
 public class AdcionarSaldo : IAdcionarSaldoAluno
 {
-    public  TrasacaoModel adcionarSaldoAluno(AdcionarSaldoAlunoModel adcionarSaldoAlunoModel)
+    public  TrasacaoModel adcionarSaldoAluno(EnviarMoedasModel adcionarSaldoAlunoModel)
     {
             var conn = new DataBaseConnection().dataBaseConnection();
             conn.Open();
 
-            var cmdSelect = new NpgsqlCommand("SELECT * FROM public.\"usuario\" WHERE \"cpf\" = @cpfaluno", conn);
+            var cmdSelect = new NpgsqlCommand("SELECT * FROM public.\"usuario\" WHERE \"idusuario\" = @idUsuario", conn);
 
-            cmdSelect.Parameters.AddWithValue("cpfaluno", adcionarSaldoAlunoModel.cpfAluno);
+            cmdSelect.Parameters.AddWithValue("idUsuario", adcionarSaldoAlunoModel.idAluno);
 
             var reader = cmdSelect.ExecuteReader();
 
@@ -30,15 +30,15 @@ public class AdcionarSaldo : IAdcionarSaldoAluno
             int saldoAtual = (int)reader["saldo"];
             int idAluno = (int)reader["idusuario"];
 
-            var cmd = new NpgsqlCommand("UPDATE  public.\"usuario\" SET \"saldo\" = @Saldo WHERE \"cpf\" = @cpfAluno", connUpdate);
+            var cmd = new NpgsqlCommand("UPDATE  public.\"usuario\" SET \"saldo\" = @Saldo WHERE \"idusuario\" = @idUsuario", connUpdate);
 
 
-            cmd.Parameters.AddWithValue("cpfAluno", adcionarSaldoAlunoModel.cpfAluno);
-            cmd.Parameters.AddWithValue("Saldo", saldoAtual + adcionarSaldoAlunoModel.valorQueSeraAdcionado);
+            cmd.Parameters.AddWithValue("idUsuario", adcionarSaldoAlunoModel.idAluno);
+            cmd.Parameters.AddWithValue("Saldo", saldoAtual + adcionarSaldoAlunoModel.valorEmMoedas);
 
             var readerUpdate = cmd.ExecuteReader();
 
-            enviarEmailAluno(idAluno,adcionarSaldoAlunoModel.valorQueSeraAdcionado);
+            enviarEmailAluno(adcionarSaldoAlunoModel.idAluno, adcionarSaldoAlunoModel.valorEmMoedas);
 
             conn.Close();
             connUpdate.Close();
@@ -46,11 +46,11 @@ public class AdcionarSaldo : IAdcionarSaldoAluno
 
             TrasacaoModel transacaoGerada = new TrasacaoModel();
 
-            transacaoGerada.idusuario = adcionarSaldoAlunoModel.idprofessorFromRequest;
+            transacaoGerada.idusuario = adcionarSaldoAlunoModel.idProfessor;
             transacaoGerada.dataTransacao = DateTime.Now;
-            transacaoGerada.preco = adcionarSaldoAlunoModel.valorQueSeraAdcionado;
+            transacaoGerada.preco = adcionarSaldoAlunoModel.valorEmMoedas;
             transacaoGerada.anotacao = adcionarSaldoAlunoModel.anotacao;
-            transacaoGerada.IdBeneficiario = idAluno;
+            transacaoGerada.IdBeneficiario = adcionarSaldoAlunoModel.idAluno;
 
             return transacaoGerada;
     }
@@ -61,7 +61,7 @@ public class AdcionarSaldo : IAdcionarSaldoAluno
 
             conn.Open();
 
-            var cmdSelect = new NpgsqlCommand("SELECT * FROM public.\"aluno\" WHERE \"idaluno\" = @IDaluno", conn);
+            var cmdSelect = new NpgsqlCommand("SELECT * FROM public.\"usuario\" WHERE \"idusuario\" = @IDaluno", conn);
 
             cmdSelect.Parameters.AddWithValue("IDaluno", idAluno);
 

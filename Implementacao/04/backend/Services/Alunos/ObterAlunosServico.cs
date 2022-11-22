@@ -26,6 +26,7 @@ public class ObterAlunosServico : IObterAlunosServico
 
             alunos.Add(usuario);
         }
+        conn.Close();
 
         return alunos;
     }

@@ -2,13 +2,12 @@ using System;
 
 namespace Sprint4.Models.Professor.AdcionarSaldoAlunoModel;
 
-public class AdcionarSaldoAlunoModel{
+public class EnviarMoedasModel{
 
-    public int idprofessorFromRequest { get; set; }
+    public int idProfessor { get; set; }
+    public int idAluno { get; set; }
 
-    public String cpfAluno { get; set; }
-
-    public int valorQueSeraAdcionado { get; set; }
+    public int valorEmMoedas { get; set; }
 
     public String anotacao { get; set;}
 }

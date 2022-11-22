@@ -5,6 +5,6 @@ using Sprint4.Models.Transacao.TrasacaoModel;
 
 public interface IAdcionarSaldoAluno{
 
-    public TrasacaoModel adcionarSaldoAluno(AdcionarSaldoAlunoModel adcionarSaldoAlunoModel);
+    public TrasacaoModel adcionarSaldoAluno(EnviarMoedasModel adcionarSaldoAlunoModel);
 
 }

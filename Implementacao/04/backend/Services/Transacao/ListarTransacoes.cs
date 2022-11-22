@@ -16,7 +16,7 @@ public class ListarTransacoes : IListarTransacoes
 
         conn.Open();
 
-        var cmd = new NpgsqlCommand("SELECT * FROM public.\"historico\" WHERE \"idusuario\" = @IDUsuario", conn);
+        var cmd = new NpgsqlCommand("SELECT * FROM public.\"historico\" WHERE \"idusuario\" = @IDUsuario ORDER BY \"datatransacao\" DESC", conn);
 
         cmd.Parameters.AddWithValue("IDUsuario", idUsuario);
 

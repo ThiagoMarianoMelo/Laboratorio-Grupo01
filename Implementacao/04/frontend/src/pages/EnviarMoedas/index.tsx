@@ -1,17 +1,37 @@
-import { PaperPlaneTilt } from "phosphor-react";
-import { useContext, useEffect, useState } from "react";
+import { PaperPlaneTilt, X } from "phosphor-react";
+import { FormEvent, useContext, useEffect, useState } from "react";
 import { UserContext } from "../../context/UserContext";
 import { UserModel } from "../../models/UserModel";
 import { AlunoRepository } from "../../repositories/AlunoRepository";
-import { EnviarMoedasContainer, EnviarMoedasTable } from "./styles";
+import { ProfessorRepository } from "../../repositories/ProfessorRepository";
+import { EnviarMoedasContainer, EnviarMoedasTable, InputsArea, Modal, ModalOverlay, MoedasContainer, TextAreaContainer } from "./styles";
+import * as ReactModal from 'react-modal';
+
+export interface IEnviarMoedasRequest {
+    idProfessor: number;
+    idAluno: number;
+    valorEmMoedas: number;
+    anotacao: string;
+}
 
 export function EnviarMoedas() {
-    const {user} = useContext(UserContext);
+    const { user,atualizarSaldo, verifyIfUserIsLoggedIn } = useContext(UserContext);
     const [alunos, setAlunos] = useState<UserModel[]>([])
+    const [anotacao, setAnotacao] = useState('')
+    const [valorEmMoedas, setValorEmMoedas] = useState('')
+    const [exibirModal, setExibirModal] = useState(false);
+    const [alunoSelecionado, setAlunoSelecionado] = useState<UserModel | null>(null);
 
     useEffect(() => {
+        verifyIfUserIsLoggedIn()
         obterAlunos()
     }, []);
+
+    useEffect(() => {
+        if (alunoSelecionado) {
+            setExibirModal(true);
+        }
+    }, [alunoSelecionado])
 
     async function obterAlunos() {
         const response = await AlunoRepository.ObterAlunos();
@@ -22,19 +42,36 @@ export function EnviarMoedas() {
         }
     }
 
-    async function enviarMoedasParaUsuario(idUsuario: number) {
-        if (user) {
-            const request = {
-                idAluno: idUsuario,
-                idProfessor: user.idUsuario ,
-                valorQueSeraAdicionado: 
+    async function enviarMoedasParaUsuario(event: FormEvent) {
+        event.preventDefault();
+        if (user && alunoSelecionado) {
+            const request: IEnviarMoedasRequest = {
+                idAluno: alunoSelecionado?.idUsuario,
+                idProfessor: user.idUsuario,
+                anotacao,
+                valorEmMoedas: Number(valorEmMoedas)
             }
     
-            const response = await AlunoRepository.EnviarMoedas(request);
-            alert('Moedas enviadas com sucesso')
-            window.location.reload();
+            const response = await ProfessorRepository.EnviarMoedas(request);
+            if (response) {
+                atualizarSaldo(Number(valorEmMoedas));
+                alert(`Moedas enviadas com sucesso para o usuário ${alunoSelecionado.nome}`)
+                window.location.reload();
+            }
+            else {
+                alert('Saldo insuficiente');
+            }
         }
     }
+
+    function fecharModal() {
+        setAlunoSelecionado(null)
+        setAnotacao('')
+        setValorEmMoedas('')
+        setExibirModal(false)
+    }
+
+    const botaoDesabilitado = !valorEmMoedas && !anotacao;
 
     return (
         <EnviarMoedasContainer>
@@ -54,7 +91,7 @@ export function EnviarMoedas() {
                                 <td>{aluno.nome}</td>
                                 <td>{aluno.email}</td>
                                 <td>
-                                    <button onClick={() => enviarMoedasParaUsuario(aluno.idUsuario)}>
+                                    <button title="Enviar moedas para o aluno"onClick={() => setAlunoSelecionado(aluno)}>
                                         <PaperPlaneTilt size={32}/>
                                     </button>
                                 </td>
@@ -63,6 +100,29 @@ export function EnviarMoedas() {
                     })}
                 </tbody>
         </EnviarMoedasTable>
+        {exibirModal && (
+            <>
+                <ModalOverlay/>
+                <Modal onSubmit={enviarMoedasParaUsuario}>
+                    <header>
+                        <h1>Enviar moedas para: {alunoSelecionado?.nome}</h1>
+                        <X size={24} onClick={fecharModal}/>
+                    </header>
+                    <InputsArea>
+                        <MoedasContainer>
+                            <label htmlFor="moedas">Quantidade de moedas:</label>
+                            <input placeholder="Digite um valor em moedas" type="text" value={valorEmMoedas} onChange={(e) => setValorEmMoedas((e.target.value))} name="moedas" />
+                        </MoedasContainer>
+                        <TextAreaContainer>
+                            <label htmlFor="anotacoes">Anotações:</label>
+                            <textarea placeholder="Digite uma anotação para o aluno"name="anotacoes" onChange={(e) => setAnotacao(e.target.value)} value={anotacao}/>
+                        </TextAreaContainer>
+                    </InputsArea>
+                    <button type="submit" disabled={botaoDesabilitado}>Enviar moedas</button>
+                </Modal>
+            </>
+        )}
+            
     </EnviarMoedasContainer>
     )
 }

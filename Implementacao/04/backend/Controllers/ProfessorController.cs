@@ -20,19 +20,18 @@ public class ProfessorController : ControllerBase
     }
 
 [HttpPost]
-[Route("AdcionarSaldo")]
-public void addSaldoAluno( [FromBody] AdcionarSaldoAlunoModel modelAdcionarSaldo ){
+[Route("enviar-moedas")]
+public int enviarMoedasParaAluno( [FromBody] EnviarMoedasModel requisicao ){
 
     DescontarSaldo ds = new DescontarSaldo();
 
-    ds.descontarSaldoConta(modelAdcionarSaldo.valorQueSeraAdcionado, modelAdcionarSaldo.idprofessorFromRequest);
+    ds.descontarSaldoConta(requisicao.valorEmMoedas, requisicao.idProfessor);
 
-    TrasacaoModel transacaoCriada  =  adcionandoSaldo.adcionarSaldoAluno(modelAdcionarSaldo);
+    TrasacaoModel transacaoCriada = adcionandoSaldo.adcionarSaldoAluno(requisicao);
 
     CadastrarTransacao cadastroDeTransacao = new CadastrarTransacao();
 
-    cadastroDeTransacao.cadastrarTransacao(transacaoCriada);
-
+    return cadastroDeTransacao.cadastrarTransacao(transacaoCriada);
     }
 
 }

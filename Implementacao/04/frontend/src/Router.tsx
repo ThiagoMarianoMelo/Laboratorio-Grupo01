@@ -18,7 +18,7 @@ export function Router() {
                 <Route path="/register" element={<Register />}/>
                 <Route path="/vantagens/cadastrar" element={<RegisterVantagem />}/>
                 <Route path="/extrato" element={<Extrato />}/>
-                <Route path="/extrato" element={<EnviarMoedas />}/>
+                <Route path="/enviar-moedas" element={<EnviarMoedas />}/>
 
             </Route>
         </Routes>

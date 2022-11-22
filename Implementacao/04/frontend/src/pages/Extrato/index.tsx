@@ -6,16 +6,16 @@ import { ExtratoContainer, ExtratoTable } from "./styles";
 import { format, parseISO } from 'date-fns';
 
 export function Extrato () {
-    const { user } = useContext(UserContext);
+    const { user, verifyIfUserIsLoggedIn} = useContext(UserContext);
     const [transacoes, setTransacoes] = useState<TransacaoModel[]>([]);
 
     useEffect(() => {
+        verifyIfUserIsLoggedIn()
         obterTransacoesUsuario()
     }, []);
 
     async function obterTransacoesUsuario() {
         if (user) {
-            console.log('if')
             const resposta = await TransacoesRepository.ObterTransacoes(user.idUsuario);
             if (resposta) {
                 setTransacoes(resposta.transacoes)
@@ -33,6 +33,7 @@ export function Extrato () {
             <ExtratoTable>
             <thead>
                     <tr>
+                        <th>Tipo de transação</th>
                         <th>Valor</th>
                         <th>Anotações</th>
                         <th>Data da transação</th>
@@ -44,6 +45,7 @@ export function Extrato () {
                         const dataFormatada = format(dataISO, 'dd/MM/yyyy')
                         return (
                             <tr key={transacao.idTransacao}>
+                                <td>{transacao.idBeneficiario === user?.idUsuario ? 'Entrada' : 'Saída'}</td>
                                 <td>{transacao.preco} moedas</td>
                                 <td>{transacao.anotacao}</td>
                                 <td>{dataFormatada}</td>
