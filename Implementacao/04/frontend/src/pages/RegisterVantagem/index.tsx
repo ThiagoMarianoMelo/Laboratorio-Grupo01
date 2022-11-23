@@ -50,6 +50,8 @@ export function RegisterVantagem() {
         }
     }
 
+    const botaoDesativado = nome === '' || descricao === '' || urlFoto === '' || preco === ''
+
     return (
         <RegisterContainer>
             <RegisterContent>
@@ -94,7 +96,7 @@ export function RegisterVantagem() {
                             value={descricao}    
                         />
                     </InputField>
-                    <button type="submit">Cadastrar Vantagem</button>
+                    <button type="submit" disabled={botaoDesativado}>Cadastrar Vantagem</button>
                     <button type="button" onClick={handleRedirectToHome}>Voltar</button>
                 </InputFieldsContainer>
             </RegisterContent>

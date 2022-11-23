@@ -71,7 +71,7 @@ export function EnviarMoedas() {
         setExibirModal(false)
     }
 
-    const botaoDesabilitado = !valorEmMoedas && !anotacao;
+    const botaoDesativado = anotacao.length === 0 || valorEmMoedas.length === 0
 
     return (
         <EnviarMoedasContainer>
@@ -118,7 +118,7 @@ export function EnviarMoedas() {
                             <textarea placeholder="Digite uma anotação para o aluno"name="anotacoes" onChange={(e) => setAnotacao(e.target.value)} value={anotacao}/>
                         </TextAreaContainer>
                     </InputsArea>
-                    <button type="submit" disabled={botaoDesabilitado}>Enviar moedas</button>
+                    <button type="submit" disabled={botaoDesativado}>Enviar moedas</button>
                 </Modal>
             </>
         )}
